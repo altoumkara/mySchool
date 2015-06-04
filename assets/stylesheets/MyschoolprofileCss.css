@@ -1,0 +1,654 @@
+
+
+/*************************top menu***********************************/
+header aside div h3{background-color:#B0DBA9;}
+
+/*********************************wrapper************************************/
+
+
+/** html .container {
+    height:300px
+}*/
+
+
+ 
+
+
+/*********************************user profile  details************************************/
+
+.profileintro{  border: 1px solid green;  margin: 0%; padding: 0%;}
+.profiledetails{ border: 1px solid blue;}
+.user-name-and-status{position: relative; border: 1px solid yellow; background-color: pink;}
+.college-header{position: relative;  margin-top: -1%;}
+.online_Status{margin-top: 0%;border-radius: 30%; border:5px outset green; background-color: orange;}
+.online_Status h1{ margin: auto; padding: 0%; font-size: 1em; text-align: center;}
+/*user name*/
+.profiledetails #user_name{margin-top: 0%;}
+.pro-overview{background-color: pink;}
+ .aaa{background-color: blue;}
+
+
+ /*user profile navigation bar: i.e sumamary, project, partner...*/
+
+.profiledetails .profile_header ul li{
+  display: block;
+  position: relative;
+  float: left;
+ }
+
+ /*user profile navigation bar link: i.e sumamary, project, partner...*/
+.profiledetails .profile_header ul li header
+{
+text-decoration: none;
+cursor: pointer; cursor: hand;
+
+}
+
+
+/*bar below profile nav bar*/
+.profiledetails #line-below-nav-header{margin-top: 19px; margin-right:0px;}
+
+/*use for jquery*/
+.user-info-header-style{
+  border:1px solid black; border-bottom:none;
+  border-top-left-radius:10px; border-top-right-radius:10px;
+}
+
+/*bar bellow each nav tag*/
+nav hr{
+  position: relative;
+ width: 110%;
+ margin-top: 0%;
+}
+  
+  /*bar bellow project and partner nav tag*/
+ nav hr#line-below-pro-header, hr#line-below-part-header, hr#line-below-abt-header{
+   width: 120%;
+    margin-left: -10px;
+   /*  margin-top: 3px;
+   
+*/
+  }
+
+/*bar below partner nav tag*/
+nav  hr#line-below-part-header{
+  /*width: 120%;
+  margin-top: 3px;*/
+}
+
+/*bar below about nav tag*/
+nav  hr#line-below-abt-header{
+ width: 120%;
+/* margin-top: 3px;*/
+}
+
+/* edit button */
+#edit-header{margin-top: -10px;}
+
+    
+/*div below the profile navigation bar, this content  will dynamically change based on tag selected*/
+ .profiledetails #all-about-user{
+  border: 1px solid black;
+  border-radius: 10px;
+  
+  margin-top: -26px;
+  margin-bottom: 0px;
+ 
+  padding: 1px;
+  border-top: none;
+ }
+
+ 
+ /***scrolling div*/
+ .profiledetails #all-about-user #inner-for-scroll{
+  height: 330px;
+  overflow: auto;
+ } 
+
+/**scroll bar style for only the #inner-for-scroll element */
+#inner-for-scroll::-webkit-scrollbar { width: 10px;}
+ 
+#inner-for-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+#inner-for-scroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+
+/*table that display user info in the profile section*/
+ .tafble th, .tfable td{border:none !important;} /*taking off the default border between rows*/
+
+/*left element of the table*/
+.profiledetails #all-about-user table .td-lbeft {
+ text-align: left;
+  padding-left: 0px;
+  border: 1px solid yellow;
+}
+
+#profile_summary_content{padding: 0px; margin: 0px;  }
+
+#profile_summary_content .row {width: 100%; border: 1px solid red; }
+/*right element of the table*/
+.profiledetails #all-about-user .table .td-rigfht{
+  padding-left: 50px;
+  
+}
+
+/**user detail summary*/
+#profile_summary_content h4{color: #575257;margin-top:7px; margin-bottom: -15px;}
+#profile_summary_content hr{position: relative; margin-bottom: 5px; }
+#profile_summary_content p{text-align: left; margin: 0px; padding: 0px; margin-top: -3px; margin-left: 5px;}
+#profile_summary_content h5{ text-align: right; margin: 0px;  padding: 0px;
+                                    margin-left: 0px; margin-right: 0px;  }
+  .fu{border: 1px solid red; margin: 0px;  padding: 0px; }
+  .fa{border: 1px solid yellow; margin: 0px;  padding: 0px; }
+  .re{border: 1px solid black; }
+ 
+/**about user nav*/
+ div#profile_intro_yourself textarea{
+  width: 100%;
+  height: 200px;
+  position: relative;
+  }
+
+ div#profile_intro_yourself .about-btn, button#edit-about{
+  position: absolute;
+  margin-top: -2px;
+  right: 10px;
+ }
+ 
+ /*edit button in the about navigation*/
+ button#edit-about{
+  margin-top: -25px;
+ }
+
+
+ /*for use in jquery file(doAboutUser() function) ajax, */ 
+ .for-aboutContent{
+  background-color: white;
+  height: 350px;
+  border: none;
+  overflow: ;
+  }
+
+/***************************profile pic and other buttons ******************************/
+.profilepic-and-other{ border: 1px solid blue;
+  /**general browser*/
+ /*border-top-left-radius: 2em 2em; border-top-right-radius: 5em 15em;
+ border-bottom-right-radius: 5em 15em;border-bottom-left-radius: 2em 2em;*/
+ /*mozilla*/
+/*-moz-border-radius-topleft:2em 2em; -moz-border-radius-topright:5em 15em; 
+-moz-border-radius-bottomright:5em 15em;-moz-border-radius-bottomleft:2em 2em;*/
+/*webkit*/
+/*-webkit-border-top-left-radius:2em 2em;-webkit-border-top-right-radius:5em 15em;
+-webkit-border-bottom-left-radius:2em 2em;-webkit-border-bottom-right-radius:5em 15em;*/
+ } 
+
+/*the 4 buttons bellow the the profile pics */
+.pro-pic-bottom-details section{
+  text-align: left; margin: 0px; padding: 0px; padding-bottom: 5px; 
+}
+
+.pro-pic-bottom-details section input{
+  border:2px; border-radius: 25px; color: white; padding: 5px;  
+}
+
+/*the first 3 buttons bellow the the profile pics */
+.pro-pic-bottom-details section:nth-last-child(4) input,
+ .pro-pic-bottom-details section:nth-last-child(3) input,
+ .pro-pic-bottom-details section:nth-last-child(2) input{
+   padding-left: 30px;  width: 63%; text-align: center;
+}
+
+/*the glyphicon icons to the left of the first 3 button bellow the the profile pics */
+.pro-pic-bottom-details .glyphicon-user, .pro-pic-bottom-details .glyphicon-file,
+ .pro-pic-bottom-details .glyphicon-envelope{
+  top: -1px !important; left: 23px; color: white; position: relative;
+}
+
+/*the plus(+) glyphicon icon to the right of the user glyphicon icon bellow the the profile pics */
+.pro-pic-bottom-details section:nth-last-child(4) .glyphicon-plus{ 
+  position: absolute; margin-left:  -6px; top: 5px;
+}
+
+/*the first button bellow the the profile pics */
+.pro-pic-bottom-details section:nth-last-child(4) input{background-color: #751919; border:2px outset #751919;}
+
+/*the second button bellow the the profile pics */
+.pro-pic-bottom-details section:nth-last-child(3) input{background-color: #CF1565;border:2px outset #CF1565;}
+
+/*the third button bellow the the profile pics */
+.pro-pic-bottom-details section:nth-last-child(2) input{background-color: #CF1565;border:2px outset #CF1565;}
+
+/*the fourth button bellow the the profile pics */
+.pro-pic-bottom-details section:nth-last-child(1) input{
+  margin-left: 12%; background-color:green; border:2px outset green; width: 63%;
+}
+
+/*for small screen*/
+@media only screen and (max-width: 768px){
+ .pro-pic-bottom-details section:nth-last-child(1) span{
+   text-align: center;
+  }
+ .pro-pic-bottom-details section{
+   text-align: center; padding-bottom: 7px;
+ }
+
+ .pro-pic-bottom-details .glyphicon-user, .pro-pic-bottom-details .glyphicon-file,
+  .pro-pic-bottom-details .glyphicon-envelope{
+   left: 30%;
+  }
+
+ /*the fourth button bellow the the profile pics */
+ .pro-pic-bottom-details section:nth-last-child(4) input,
+   .pro-pic-bottom-details section:nth-last-child(3) input,
+   .pro-pic-bottom-details section:nth-last-child(2) input,
+   .pro-pic-bottom-details section:nth-last-child(1) input,
+   .pro-pic-bottom-details section:nth-last-child(1) input{
+   width: 90%;
+  }
+
+ .pro-pic-bottom-details section:nth-last-child(1) input{
+   margin-left: 5%;
+  }
+}
+
+
+
+
+
+
+
+
+
+/*.profilepic .user-img{width:100%; position: absolute; top: 0%; left: 0%;
+ 
+} */
+.profilepic{height:200px; overflow: hidden;  position: relative; margin: 0px;padding:0px;}
+.profilepic .col-xs-12 { height:200px; position: relative; background-color : white ;}
+.profilepic .col-xs-12 img{position: absolute; display: table-cell; top: 0px; bottom: 0px; left: 0px; right: 0px;}
+
+.profilepic-img{margin: auto; }
+
+#upload-pic{ position: absolute;bottom: 0%; text-align: center;}
+#change-pro-pic{position: absolute;bottom: 0%; right: 20%;}
+input[value="change profile picture"] {display: none;}
+
+
+@media only screen and (max-width: 768px){
+  #change-pro-pic{position: absolute;bottom: 0%; left: 25%;}
+}
+
+
+#become-part{/*position: absolute;bottom: 0%; right: 58%;*/}
+/*********************************main page ************************************/ 
+/* row that wraps the bottom section bellow profileintro that contains the <main> and photos*/
+.main{
+/* background-color: orange;*/
+
+}
+
+
+/*********************************new post form************************************/
+
+.new-post{border-radius: 25px; border:5px outset #F5F7F5; margin-bottom: 20px !important;}
+
+/*.new-post #post-form{
+  margin-top: -6.5%;
+  margin-left: 208px;
+}
+*/
+.new-post #post-form .post-btn{
+ /* width: 100px;*/
+  height: 35px;
+}
+/*checkbox to request services*/
+/*.new-post #service_chck{position: relative; width: 30px; height: 30px; top: 4px;  }*/
+/*only for the 2 inputs of the service*/
+
+.new-post .txt-area{
+   padding: 0px !important;
+   margin: 0px !important;
+}
+.new-post textarea{ 
+ /* position: relative;
+  margin-top: 0px;
+  margin:0% auto ;*/
+  border-bottom: 1px outset #F5F7F5;
+  /*padding-left: 8px;*/
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  -moz-border-radius-topright:18px;-moz-border-radius-topleft:18px;
+-webkit-border-top-left-radius:18px;-webkit-border-top-right-radius:18px;
+-o-border-top-left-radius: 18px; -o-border-top-right-radius: 18px;
+overflow: auto;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+
+}
+
+
+#auto_resizeimage {width:100%; 
+ height:100%;
+ width: auto\9; /* ie8 */
+}
+
+/*.new-post-includes
+{
+ margin:0% auto ;
+ width:100%;
+}*/
+
+.new-post-includes button
+{ 
+  background: transparent;
+  background-repeat: no-repeat;  
+  margin-right: 1%;
+  background-size: contain; 
+  background-position: center;
+  height: 35px;
+  width: 15%;
+  border:  1px solid white;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+
+.new-post-includes #icon-bed
+{
+  background-image: url('../../images/icon/bed.png');
+}
+
+.new-post-includes #icon-book
+{
+  background-image: url('../../images/icon/book3.png');
+}
+
+.new-post-includes #icon-electro
+{
+  background-image: url('../../images/icon/mycomputer.png');
+}
+
+.new-post-includes #icon-tutorial
+{
+  background-image: url('../../images/icon/tutorial.png');
+}
+
+.new-post-includes #icon-photo
+{
+  background-image: url('../../images/icon/photo.png');
+}
+
+.chck-for-service-lbl{width: 28%;  height: 35px; text-align: right;}
+.chck-for-service{width: 8%;}
+.chck-for-service input.form-control {width: 100%; margin-top: 0px !important;}
+
+.post-btn{
+
+text-align:center;
+background-color:#751919;
+font-weight: bold;
+color: #F5F7F5;
+border-radius: 10px;
+-webkit-border-radius: 100px;
+border: 1px solid #F5F7F5;
+cursor: pointer;
+box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+
+}
+
+input#service-input-right{position: relative; left: 40%; width:100%; padding-left: 30px;}
+input#service-input-left{position: relative; width:100%; padding-right: 60px;}
+
+
+/*********************************extra section section in post************************************/
+.extra-stuff{background-color: orange; border-radius: 25px; border:2px outset #F5F7F5;}
+.new-post fieldset {   border-radius: 18px;  
+ -moz-border-radius: 18px;-webkit-border-radius: 18px;-o-border-radius: 18px;}
+
+.new-post fieldset legend{font-size: 1em; font-weight: bold; text-align: center; margin-bottom: 5px; }
+
+.new-post input, .extra-stuff select{position: relative; border-radius: 18px; padding: 2%; 
+-moz-border-radius: 18px;-webkit-border-radius: 18px;-o-border-radius: 18px;}
+
+.extra-stuff input, .extra-stuff select{height: 1.5%;}
+
+
+/*********************************every single post************************************/
+.main-post {position: relative; border-radius: 10px; border:1px outset #F5F7F5;  }
+
+
+.main-post-header{ 
+  border-top-left-radius:20px; border-top-right-radius:20px; height: 60px;
+  /*background-color:#B0DBA9;*/ }
+
+header.main-post-header .post-avatar{position: relative; width: 42px; height: 57px; overflow: hidden; background-color : white ;}
+header.main-post-header .post-avatar img{position: absolute; display: table-cell; top: 0px; bottom: 0px; left: 0px; right: 0px; margin: auto; text-align: center; vertical-align: middle; }
+header.main-post-header section.col-xs-10{ height: 45px;  padding-left: 5px !important;}
+header.main-post-header section h4{margin-top: 0px; margin-bottom: 3px; margin-left: 0px !important; }
+.main-post-body {padding-top: 2%;} 
+.main-post-body p{padding-left:  1%; padding-right: 1%; padding-top: 10px;}
+/*.main-post-body .row p{padding: 0% 1% 0% 1%; margin: 0px; }*/
+.main-post .table{width: 100% !important; margin-bottom:5px !important;  padding-bottom:5px !important;}
+.main-post .table td.top-tr{position: relative; width: 100px;} /*the top cell that has the item image */
+.main-post .table td .item-img {position: absolute; top: 0px; left: 0px;} /*item first image that will appear in the table*/
+.main-post .table tr{margin: 0px !important; padding: 0px !important; height: 20px;}
+.main-post .table td{margin: 0px !important; padding: 0px !important; text-align: left;   vertical-align: middle; /*border: 1px solid black !important;*/}
+.main-post .table td.td-static{width: 50px; padding-right: 10px !important; text-align: right;}
+.main-post .table td h4{margin: 0px !important; padding: 0px !important; text-align: left;}
+/*********************************every single comment of a  post************************************/
+ul.each-cmt .main-post {position: relative; left: 6%; width: 95%; border: none}
+
+ul.each-cmt .main-post-header{position: relative; 
+  border-top-left-radius:5px; border-top-right-radius:5px; height: 20px; background-color: transparent;
+ margin: 0px !important; padding: 0px !important; /*background-color:#B0DBA9; */
+}
+ 
+ul.each-cmt header.main-post-header .post-avatar{height: 40px; width: 37px; overflow: hidden; background-color : white ; }
+ul.each-cmt header.main-post-header .post-avatar img{position: absolute; display: table-cell; top: 0px; bottom: 0px; left: 0px; right: 0px; margin: auto; }
+ul.each-cmt header.main-post-header section.col-xs-10{ height: 18px;  padding-left: 5px !important;}
+ul.each-cmt header.main-post-header section h4{margin: 2px; font-size: 1.1em;}
+ul.each-cmt header.main-post-header time.main-post-time{ position: absolute; top:0px; right: 0px; margin-bottom: -20px;}
+
+ul.each-cmt .main-post-body {padding-top: 0px !important;  margin-top: -20px !important;  }
+ul.each-cmt .main-post-body p{padding-left: 15%;margin-bottom: 0px !important; padding-bottom:0px !important; padding-right: 1%; padding-top: 0.5px !important;}
+/********************************presenting user's each pics************************************/
+.main-post-img{
+  /*border-bottom-right-radius: 25px; border-bottom-left-radius: 25px;
+   border-top-right-radius: 5px;  border-top-left-radius: 5px; */
+  height:60%; 
+}
+
+.main-post-img div{padding: 1px;}
+.main-post-img {background-color : white ;}
+
+
+
+/*.main-post-img #userpict, div#pic-in-post { 
+  position: relative;
+  width: 100%;
+  margin: 0% auto;
+ }
+
+
+.main-post-img #userpict .user-each-pic-name, div#pic-in-post .user-each-pic-name{ 
+ margin-top: 0.2%;
+ display: inline-block;
+ vertical-align: middle;;
+ width: 30%;
+ margin-right: 3px;
+ margin-bottom: 1%;
+}
+
+.main-post-img .user-img{
+  right: 10px;
+   bottom: 7px;
+  position: relative;
+   width: 111%;
+   height: 111%;
+
+}*/
+
+.wrapper-cmt .new-post textarea{
+  height:20px !important;
+}
+
+.user-each-pic{ 
+}
+
+.user-each-pic .col-xs-3{ 
+   height: 100% !important;
+   vertical-align: middle !important;
+   padding: 1px !important;
+
+}
+.user-each-pic .col-xs-3 img{ 
+  
+}
+  
+
+.user-each-pic .chck{
+ position: absolute; top: 2px; left: 5px; 
+ width: 30px;
+ height: 30px;
+
+}
+ 
+
+/**comment */
+.cmt-container{
+  width:100%;position: relative; background-color: orange;
+  border-bottom-left-radius:10px;border-bottom-right-radius:25px;background-color:#B0DBA9; height:3em;
+}
+
+.post-comment, .post-like{text-align: center; cursor: pointer; cursor: hand; }
+.post-buying{/*color:#751919;color:green;*/ cursor: pointer; cursor: hand;  height: 18px;
+line-height: 12px; background: none; border:none;}
+
+
+table.comment{
+  border: none;
+}
+table.comment th{
+ 
+}
+
+#cmt-posts{
+  background-color: #999966;
+}
+
+
+div#wall, ul#posts{
+  width: 100%;
+  margin-left: -5px;
+}
+
+
+
+
+/*********************************section aside the main ************************************/
+.pro_sbide_bar .righttop, .righttop h4
+{
+ /*margin: 0px -3px 0px 0px;
+ border-radius: 20px;
+ float : right;
+ width:15%;*/
+ border-radius: 10px; border:1px outset #F5F7F5;
+}
+
+.no-item-text{  height: 200px;  text-align: center;  line-height: 150px;}
+.no-user-text{  height: 45px;  text-align: center;  line-height: 25px;}
+section#partner-pic{}
+/*.pro_sbide_bar section{
+ /* border-radius: 25px; border:5px outset #F5F7F5;width: 106%;*/
+/*}
+.pro_side_bar section h4, .pro_new_side_bar section h4{
+  text-align: center;
+
+}
+.pro_new_side_bar section li a{  text-align: left;
+  margin-left: -100px;
+}
+
+.pro_side_bar section li a{
+  text-align: left;
+  margin-left: -50px;
+}
+
+.pro_new_side_bar
+{
+ margin: 0px 5px 0px 0px;
+ border-radius: 20px;
+ float : right;
+ width:27%;
+ }*/
+
+aside.pro_sbide_bar .row{padding: 0px 0px 0px 3px !important; }
+aside.pro_sbide_bar #aside-partners{margin-bottom: 10px !important;}
+aside.pro_sbide_bar li section.col-xs-2{text-align: center;}
+aside.pro_sbide_bar li section.col-xs-2{height: 45px; width: 40px; position: relative;}
+aside.pro_sbide_bar li section.col-xs-2 img{position: absolute; display: table-cell; top: 0px; bottom: 0px; left: 0px; right: 0px; margin: auto; text-align: center; vertical-align: middle; }
+aside.pro_sbide_bar li section.col-xs-10{width: 82%; padding-left: 7px !important; height: auto;  margin: auto; text-align: left; }
+
+aside,div{
+
+/*padding: 5px;
+margin:2px;*/
+}
+
+aside,div, ul{
+/*padding:5px;*/
+}
+aside,div, ul,li{padding:5px; }
+
+aside section{   border-radius: 20px; }
+
+aside section h4{text-align: center; background-color:#B0DBA9;}
+
+aside li{
+margin-left: 0px !important;
+margin-right: 0px !important;
+margin-bottom: 2px !important;
+padding-left: 0px !important;
+} 
+
+aside.righotside li .col-xs-1{background-color: white;}
+aside.righotside li img{max-height:100% !important;max-width:100% !important;}
+ 
+
+
+section hr#bet-aside-div{width: 100%; height:1px; background-color: blue; margin-top: 1px !important;}
+
+
+
+
+
+
+
+
+
+
+
+/** pics inside the slider when soemeone clicks the photo icon***/
+
+#userpict  .user-each-pic{ 
+ margin:0% auto;
+ position: relative;
+ margin-top: 1%;
+}
+
+.user-each-pic input.chck{
+ position: absolute; top: -15px; left: 1px; 
+ width: 40px;
+ height: 40px;
+}
+/** END pics inside the slider when soemeone clicks the photo icon***/
+
+

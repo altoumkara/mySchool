@@ -1,0 +1,104 @@
+body {
+background-color:WhiteSmoke ;
+/*(background-image: url('backgroundimage.png');
+background-repeat: no-repeat;
+background-size:500px 500px;
+-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+*/
+}
+
+.bannertop
+{
+margin:0% 70% 0% 5%;
+width:90%;
+height:90px;
+color:Red;
+background-color:silver;}
+
+p
+{
+text-indent:30px;
+text-align: left;
+font-size: 20px;
+} 
+
+h1
+{
+
+text-align:left;
+margin-left:0%;
+width:12%;
+color:Red;
+background-color:silver;
+}
+
+
+.loginbar 
+{ 
+margin:4% 1% 10% 30%;
+text-align:left
+color:black;
+background-color:silver;
+width:500px;
+} 
+
+
+ 
+.loginmenu
+{
+
+margin:-9.5% 1% 10% 30%;
+padding-top:80px ;
+text-align:center;
+
+background-color:silver;
+
+ 
+height:200px;
+ width:500px;
+ 
+}
+
+
+.emailbox
+{
+margin-top:-40px ;
+width:600px;
+
+
+}
+
+.passwordbox 
+{
+margin-top:-40px ;
+width:600px;
+
+}
+
+.login
+{
+width:517px;
+
+}
+
+.newstudent 
+{
+margin-top:-20px ;
+margin-left: 190px;
+
+}
+
+
+
+.forgetpassword
+{
+
+}
+
+
+
+
+

@@ -1,0 +1,311 @@
+
+
+
+/*********************************top Menu************************************/
+/*div.top-sub-menu span.glyphicon-th{ margin-top: 5px;}
+
+div.top-sub-menu .glyphicon-eye-open, div.top-sub-menu .glyphicon-picture{
+  position: relative;left:4%; font-size: 2em;
+width: 100%; text-align: center; padding: 16%;}
+
+div.top-sub-menu .glyphicon-bell{position: relative;left:4%; font-size: 2em; 
+width: 100%; text-align: center; padding: 16%;}
+
+div.top-sub-menu span.glyphicon{ border: 2px solid white; border-radius: 3px;}
+
+div.top-sub-menu span.glyphicon-combine{position: relative; width: 100%; text-align: center; padding: 16%;}
+
+div.top-sub-menu .partner-icon1{position: relative; border: none !important; bottom: 20%;
+ right: 25%; margin: 0px auto;  }
+
+.partner-icon2{font-size: 2em;position: relative;right:20%; top: 2px;  border: none !important;}
+*/
+
+/**********************************top nav******************************************/
+/*in sign css*/
+
+/*********************************wrapper************************************/
+/***define in profile css*/
+
+
+/*********************************left aside************************************/
+
+.leftside{
+/*position: relative;
+float:left;
+width:17%;*/
+
+border: 1px solid green;
+}
+
+/*elements under category  in the .leftside */
+.leftside ul  {
+
+}
+
+
+/*group of elements in each different categoris .leftside including h5 tags*/
+.leftside ul ul  {
+/*position: relative;
+width: 178px;
+margin-left: -75px;*/
+}
+
+/*elements below the h5 tags in the .leftside lists*/
+.leftside ul li {
+
+text-align: left;
+/*margin-bottom: 8px !important;*/
+
+}
+
+/*each links in the category list*/
+.leftside ul li a{
+text-align: left;
+text-decoration: none;
+}
+#sale-req, #tutor-req, #part-req, #serv-req{
+   color: white; text-align: center; margin-right: 0px !important; margin-left: 0px !important;
+}
+
+#sale-req{background-color: red; }
+#tutor-req{background-color: brown; }
+#part-req{background-color: green; }
+#serv-req{background-color: blue; }
+
+/*********************************right aside************************************/
+
+.rightside{
+  position: relative;
+float:right;
+width:22.2%;
+} 
+.rightside h4{
+  text-align: center;
+} 
+.pro_side_bar section h4, .pro_new_side_bar section h4{
+  text-align: center;
+
+}
+.right-banner section li a{
+  text-align: left;
+  margin-left: -90px;
+}
+
+
+
+
+
+
+/*********************************main page ************************************/
+main.hm-main{ }
+
+.main .main-contenu{width: 99%;}
+.main #search-input
+{ 
+  /*position: relative;
+  margin-top: 0px;
+  margin:0% auto ;
+  
+  margin-bottom: 5%;*/
+  width: 80%;
+  height: 2.5em;
+  border-bottom: 1px outset #F5F7F5;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: 2px solid orange;
+  
+}
+
+.main .search-button{
+ height: 2.5em; padding: 5px;
+ text-align:center;
+ background-color:#751919;
+ color: white;
+ border-radius: 10px;
+ -webkit-border-radius: 100px;
+}
+
+@media only screen and (max-width: 768px){
+  main.hm-main{ position: relative; top: -20px !important; }
+ .main #search-input{float: left; }
+ .main .search-button{float: right; }
+}
+
+ul.it-list{
+  padding:0px 0px  15px  2px !important ;
+  margin:0px 0px  1px  0px !important ;
+}
+
+
+
+ul.it-list .span-in-list{font-size: 0.7em;}
+
+ul.it-list .it-conditidon{color: black;}
+
+@media only screen and (max-width: 768px){
+ ul.it-list .it-condition{font-size: 0.7em;}
+}
+
+
+div.it-list h5{
+  font-size: 0.9em;
+  font-weight: bold;
+
+}
+
+
+
+div.it-list  div{
+  /*padding-right: 2px !important;
+  position-left:0.5px !important;
+  padding-bottom: */
+padding:1px 5px  10px  0.5px !important ;
+/*margin:0.2px 5px  0px  0.5px !important ;*/
+
+}
+
+@media only screen and (max-width: 768px){
+  .main{width: 100% !important;
+  padding:0px !important ;
+  margin:0px !important ;
+ }
+
+}
+
+
+div.it-list a{text-decoration: none;}
+table.it-list {width:100%;}
+.main-post table.noti{margin: -3.2% 0% 2% 0.05%;border-radius:0px; border:0px; bottom: 0px;}
+.main-post table.comment{position: absolute; bottom: -7.5%;}
+
+table.noti{
+  position: relative;
+  border-radius: 25px; border:5px outset #F5F7F5;
+  margin: -3.2% 0% 0% 0.05%; 
+  height:12%; width:100%;
+    font-size: 1em;
+
+}
+
+/**user avater for notification **/
+.noti-list .user-avatar-wrapper .user-avatar-link { 
+  height:60px; position: relative; background-color : white ;
+}
+.noti-list .user-avatar-wrapper .user-avatar-link img{
+  position: absolute; display: table-cell; top: 0px;
+  bottom: 0px; left: 0px; right: 0px; margin: auto;
+}
+/**End user avater for notification **/
+
+
+table tr{
+  margin: 0% 0% 0% 0%; border-top-left-radius:10px; border-top-right-radius:25px;
+    font-size: 14px;
+}
+
+
+.noti .td-left{
+  text-align: right;
+  padding-right: 15%;
+}
+
+table tr th{
+  text-align: center;  font-size: 12px;
+  background-color:#B0DBA9; height:5em; 
+}
+
+.noti .top-first-th{
+ border-top-left-radius:10px; 
+}
+.noti .top-last-th{
+   border-top-right-radius:25px;
+}
+/**accept offer/request offer*/
+.noti .bottom-first-th{border-bottom-left-radius:10px;cursor: pointer; cursor: hand;}
+.noti .bottom-last-th{border-bottom-right-radius:25px; cursor: pointer; cursor: hand;}
+.noti  h2{color:green; font-size: 2em; font-weight: bold;}
+table.internship-items{position: relative;  margin-bottom: -53px;border-radius: 25px; margin-top: 5px;
+                 height:12%; width:100%;font-size: 1em;}
+
+/********************************typography************************************/
+
+.clear{
+clear:both;
+}
+
+*{
+margin:0px;
+padding:0px;
+list-style-type:none;
+}
+
+header,nav,footer,section,article{
+display:block;
+}
+
+/*
+body
+{
+font-size: 100%;
+}
+
+body,textarea, select, option, input,h1, h2, h3,h4, h5, h6
+h1{
+font-size-adjust: 0.5;
+}
+
+h2
+{
+font-size: 2.25em;
+}
+
+h3{
+font-size: 1.75em;
+}
+
+h4
+{
+font-size: 1.12em;
+}
+
+h5
+{
+font-size: 1em;
+}
+
+h6
+{
+font-size: 0.75em;
+}
+
+p, h1, h2, h3,h4, h5, h6
+{
+font-family: comic sans ms,cursive,sans-serif;
+line-height:1.25em;
+}
+
+
+
+
+
+
+
+aside,div{
+
+padding: 5px;
+margin-right:2px;
+}
+
+aside,div, ul{
+padding:2px;
+}
+
+aside,div, ul,li{
+padding:5px;
+float: left;
+}
+*/
+
+
+

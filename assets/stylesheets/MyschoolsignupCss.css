@@ -1,0 +1,230 @@
+
+
+/*********************************top banner************************************/
+header.hdr{position: relative;background-color:#B0DBA9; background-image: inherit;}
+nav{background: none !important; border: 0px !important; background-image: none !important; background-color: transparent !important;}
+.re{border: 1px solid black; }
+header.hdr li, header.hdr ul{padding: 0px;}
+
+.hdrlogo {
+text-align:center;
+vertical-align: bottom;
+padding: 0%; margin:0%;
+}
+
+.hdrlogo a{color:#751919;}
+header a{text-decoration: none;}
+
+#logo{text-decoration: none; margin: auto; text-align: center; color:#751919; font-weight: bold; font-size: 2em}
+
+
+
+.tryo{border: 1px solid black; padding: 0%; margin:0%;}
+.topnav nav{position: relative;}
+.topnav nav ul{position: relative;width: 100%;list-style: none; margin-left:0%;border: 1px solid black; text-align: right; }
+.topnav nav ul li{position: relative; display:inline-block;margin-right: 2%;border: 1px solid black; }
+
+/*********************************top Menu for small devices************************************/
+div.top-sub-menu span.glyphicon-th{ margin-top: 5px;}
+
+div.top-sub-menu .glyphicon-eye-open,div.top-sub-menu .glyphicon-picture,
+ div.top-sub-menu .glyphicon-edit, div.top-sub-menu .glyphicon-globe{
+	position: relative;left:4%; font-size: 2em;
+width: 100%; text-align: center; padding: 0% !important; margin:0px !important; }
+
+div.top-sub-menu .glyphicon-bell{position: relative;left:4%; font-size: 2em; 
+width: 100%; text-align: center;padding-bottom: 5% !important; margin:0px !important;}
+
+div.top-sub-menu a.glyphicon{ border: 2px solid white; border-radius: 3px;}
+
+div.top-sub-menu span.glyphicon-combine{position: relative; width: 100%; text-align: center;
+ padding-bottom: 8% !important; margin:0px !important;}
+
+div.top-sub-menu .partner-icon1{position: relative; border: none !important; top: -2px;
+ right: 0%; margin: 0px auto;  }
+
+.partner-icon2{font-size: 2em;position: relative;right:20%; top: 2px;  border: none !important;}
+
+div.top-sub-menu a.glyphicon p{text-align: center;
+ padding: 2px !important; margin: 10px !important; margin-top: 0% !important;}
+
+/*******************************************wrapper***********************************/
+
+.container
+{
+ width:100%;
+ font:  normal 100 1em comic sans ms,cursive,sans-serif; 
+ clear:both ;
+ max-width: 978px !important;  margin:0 auto;
+ /*background-color:white ;*/
+} 
+
+@media only screen and(max-width: 768px){
+ .container{min-width: 100px !important;  margin:0 auto;}
+}
+ 
+
+/***********margin: 0.5% 0% 0% 23%;******************sign up div top***********************************/
+.Signupbar 
+{ 
+text-align:left;
+width:96%;
+
+border:9px outset #F5F7F5;
+font: normal normal 100 1em comic sans ms,cursive,sans-serif;
+} 
+
+
+
+/******************************sign up div menu*********************************/
+
+/*.signupgvmenu{color:gray;border:9px outset #F5F7F5; margin:1% 1% 0% 5%;
+text-align:left;
+border-left-style:9px outset #F5F7F5; width:90%;
+
+}*/
+
+
+/**************sign up intro text***************/
+
+@media only screen and (min-width: 750px){
+ #signupintro{font:italic bold 35px/50px Bradley Hand ITC,serif; text-align:left; }
+}
+
+@media only screen and (min-width: 1117px){
+ #signupintro{font:italic bold 37px/60px Bradley Hand ITC,serif; text-align:left; }
+}
+/***************sign up form*******************/
+
+@media only screen and (max-width: 750px){
+.signup-form-group .form-group .form-control{margin-top:5px;}
+.signup-form-group .form-group {margin-top:-10px !important;}
+}
+
+
+.signup-button
+{
+/*margin-top:8%;
+margin-left:5%;
+width:20%;
+
+border: 1px solid #F5F7F5;
+*/
+font-size: 1.2em;
+text-align:center;
+background-color:#751919;
+height: 2em !important;
+color: white;
+border-radius: 10px;
+-webkit-border-radius: 100px;
+}
+
+input.signup-button:hover{background-color:#610607;	color: white;}
+
+
+/********existing student and term&condition********/
+
+#termandcon,dition
+{
+margin: -10% 0% 2% 4%;
+}
+
+
+@media only screen and (max-width: 750px){
+#existivngstudent{margin: 20px;}
+.skignup-form-group .form-group {margin-top:-10px !important;}
+}
+
+
+#existingstudent{position: absolute; top: 0.2em; font-size: 1em; margin: 10px !important; text-align: center;
+}
+
+
+
+
+
+
+/*********************************footer************************************/
+
+/*********************************footer************************************/
+
+
+footer{position: relative; padding-left: 0px;padding-right: 0px;background-color:#B0DBA9; bottom: 0px;
+	top: 5px; 
+}
+
+footer ul{float: right;list-style: none;}
+
+footer ul li{display:inline-block;margin-right: 40px;float: left; padding: 5px;}
+
+@media only screen and (max-width: 750px){
+	footer ul{float: left; text-align: center;}
+footer li, footer small {display: block; width: 100%; margin:2%; text-align: center;}
+}
+
+/*********************************typography************************************/
+body {background-color:   #F5F7F5;}
+
+@media only screen and (min-width: 750px){
+	body{height: 100%;}
+}
+
+body, footer, header{font-family: comic sans ms,cursive,sans-serif;}
+
+/*this used to take off the default padding and margin used by bootstrap.*/
+.no-padding{padding: 0% !important;}
+.no-margin{margin: 0% !important;}
+
+/***make the footer stick to the bottom of the page******/
+* {
+margin: 0;
+}
+html, .body {
+height: 84%;
+}
+.container {
+min-height: 100%;
+margin: 0 auto 0em;
+}
+footer .ftr, .push {
+height: 0em;
+}
+/***End make the footer stick to the bottom of the page******/
+/*body,textarea, select, option, input,h1, h2, h3,h4, h5, h6{font-size-adjust: 0.5;}*/
+
+/*header,aside div h3
+{
+margin:0% 0% 0% 0%;
+width:100%;
+
+}*/
+
+/*h2{font-size: 2.25em;}
+
+h3{font-size: 1.75em;}
+
+h4{font-size: 1.12em;}
+
+h5{font-size: 1em;}
+
+h6{font-size: 0.75em;}
+
+p, h1, h2, h3,h4, h5, h6{line-height:1.25em;}*/
+
+
+/*take off the border when input is clicked*/
+*:focus {    outline: 0;}
+
+.clear{clear:both;}
+
+     
+.error{  color: red;}
+
+.success{  color: green;}
+
+
+*{list-style-type:none;}
+
+button:focus , button:active{outline:0 !important;}
+input:focus, input:active {outline:0 !important;}
+
