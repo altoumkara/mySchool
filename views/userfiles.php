@@ -37,16 +37,47 @@
      //now we move our file inside of that new folder
      move_file( $filename, "filename", $base_dir);
     }
+
+
+     /****this is Only for uploading a resume form***********/
+    //creating short names for our form variables
+   if (isset($_POST['upload-new-resume-form'])&&isset($_GET["userid"])) {
+
+     //checking if the form if filled out correctly
+     if(!is_fill_out_form($_POST)){
+         // throw an exception if it's not
+         throw new Exception("The form is not filled out correctly, go back and try agrain");
+         echo "</br>"; 
+        }
+
+     //creating a file name
+     @$filename = basename($_FILES["filename"]['name']) ;
+     echo "</br>";
+     
+     //check that the file has no error
+     $file_array = $_FILES["filename"];
+     check_file_noerror($file_array);
+     echo "</br>";
+
+     //check that our file has the right extenssion we want
+     check_resume_file_type($filename);
+
+     //creating/getting a subfolder inside the user special directory
+     $base_dir = get_file_dir($user_dir_name, $filename);
+
+     //now we move our file inside of that new folder
+     move_resume_file( $filename, "resume", $base_dir);
+    }
     
    ?>   
    <div class=clear></div>
    <main id="usersave-items" class='container'>
-     <div class="row no-padding no-margin re">
-       <div class="col-xs-12 re">
+     <div class="row no-padding no-margin">
+       <div class="col-xs-12">
          <h1>Browsing User Files</h1>
        </div>
      </div> 
-     <div class="col-xs-12 no-padding no-margin re">
+     <div class="col-xs-12 no-padding no-margin">
 
      <?php
              //echo "<p>Upload directory is $user_dir_name</p>";
@@ -58,7 +89,11 @@
           }
           //show_user_photos($_GET['userid'], $_SESSION["fname"],$_GET['slider'] );
         
+        }else{
+           echo "<h1 class=\"text-info bg-success\">Thanks for uploading!!!!</h1>";
+
         }
+        echo "</div>";
        /*echo '<p>Directory Listing:</p><ul>';
          if (isset($_GET["slider"])) {
            browse_dir($user_dir_name, $_GET["userid"], true);

@@ -1,21 +1,31 @@
 
 
 /*********************************top banner************************************/
-header.hdr{position: relative;background-color:#B0DBA9; background-image: inherit;}
+header.hdr{position: relative;background-color:#B0DBA9; background-image: url('../../images/green_cup.png'); padding-bottom: 10px !important;}
 nav{background: none !important; border: 0px !important; background-image: none !important; background-color: transparent !important;}
 .re{border: 1px solid black; }
 header.hdr li, header.hdr ul{padding: 0px;}
 
-.hdrlogo {
+.hdrlogo {           
 text-align:center;
 vertical-align: bottom;
 padding: 0%; margin:0%;
+
 }
 
-.hdrlogo a{color:#751919;}
-header a{text-decoration: none;}
 
-#logo{text-decoration: none; margin: auto; text-align: center; color:#751919; font-weight: bold; font-size: 2em}
+
+header.hdr .navbar-right a{
+	color: #F8F9F3; font-weight: bold;
+}
+
+
+/*background-image: url('../../images/seamless_paper_texture.png');*/
+.hdrlogo a{color:#751919; }
+header.hdr a{text-decoration: none; color: #F8F9F3; font-weight: bold;}
+
+#logo{width:171px; margin: auto; text-align: center; 
+ background-image: url('../../images/logo.png');}
 
 
 
@@ -52,11 +62,11 @@ div.top-sub-menu a.glyphicon p{text-align: center;
 
 .container
 {
- width:100%;
+ width:97%;
  font:  normal 100 1em comic sans ms,cursive,sans-serif; 
  clear:both ;
- max-width: 978px !important;  margin:0 auto;
- /*background-color:white ;*/
+ /*max-width: 978px !important;  margin:0 auto;*/
+ max-width: 1200px !important;  margin:0 auto;
 } 
 
 @media only screen and(max-width: 768px){
@@ -163,7 +173,8 @@ footer li, footer small {display: block; width: 100%; margin:2%; text-align: cen
 }
 
 /*********************************typography************************************/
-body {background-color:   #F5F7F5;}
+body {background-color:   #F5F7F5;  background-color: #F5F7F5;
+}
 
 @media only screen and (min-width: 750px){
 	body{height: 100%;}
@@ -227,4 +238,6 @@ p, h1, h2, h3,h4, h5, h6{line-height:1.25em;}*/
 
 button:focus , button:active{outline:0 !important;}
 input:focus, input:active {outline:0 !important;}
+
+
 

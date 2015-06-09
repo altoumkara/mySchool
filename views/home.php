@@ -88,13 +88,14 @@
 <div class="container">
  <div class="row no-padding no-margin">
    <aside class='col-xs-3 no-padding hidden-xs hiddden-sm no-margin leftside'>
+     <div  class="bet-cat">
      <div class="row no-padding no-margin">
 	     <div class='col-xs-12'><h4>Wanted</h4></div>
      </div>
 
      <div class="row no-padding no-margin">
-       <div class='col-xs-12 no-padding no-margin re'> 
-         <ul class='row no-padding no-margin re'>
+       <div class='col-xs-12 no-padding no-margin'> 
+         <ul class='row no-padding no-margin '>
            <li class='col-xs-12 '><a href=<?php echo $_SERVER["PHP_SELF"].'?userid='.$_GET["userid"].'&action=sale'; ?>>For sales</a></li>
            <li class='col-xs-12'><a href=<?php echo $_SERVER["PHP_SELF"].'?userid='.$_GET["userid"].'&action=services'; ?>>Services</a></li>
            <li class='col-xs-12'><a href=<?php echo $_SERVER["PHP_SELF"].'?userid='.$_GET["userid"].'&action=tutorial'; ?>>Tutorial partner</a></li>
@@ -105,7 +106,9 @@
 	       </ul>
        </div>
      </div>
+     </div >
 
+     <div class="bet-cat">
 	   <div class="row no-padding no-margin">
        <div class='col-xs-12'><h4> Notifications</h4></div>
      </div>
@@ -121,15 +124,17 @@
           ?> 
        </ul>
 	   </div>
-	   <div>
+          </div >
 
+	   <div>
+     <div  class="bet-cat">
        <div class="row no-padding no-margin">
           <div class='col-xs-12'><h4>Partners</h4></div>
        </div>
 
        <div class="row no-padding no-margin">
-         <div class='col-xs-12 no-padding no-margin re'> 
-           <ul class='row no-padding no-margin re'>
+         <div class='col-xs-12 no-padding no-margin '> 
+           <ul class='row no-padding no-margin '>
             <?php 
              $partner_ar = $UserAuthentication->get_userPartner($db,$_SESSION["userid"]);
              $UserAuthentication->showUserPartner($db, $_SESSION["userid"], $partner_ar);
@@ -137,7 +142,7 @@
            </ul>
          </div> 
        </div>
-
+      </div >
 
 		   <!--<<li><ul>
              <h5> Partners </h5>
@@ -162,16 +167,16 @@
   
   
    
-  <main class="col-xs-12  col-sm-7 no-padding  main hm-main re">
-     <!--<div class="row no-padding no-margin">
-       <section class="col-xs-12 home-search no-padding no-margin re" >
+  <main class="col-xs-12  col-sm-7 no-padding  main hm-main ">
+     <div class="row no-padding no-margin">
+       <section class="col-xs-12 home-search no-padding no-margin " >
          <form  action=<?php echo $_SERVER['PHP_SELF']; ?> method="GET" id="search-form" class="form-inline">
            <label for="search-input" class="sr-only">search</label>
            <input placeholder="Type a keyword..." type="text" name="search-text" id="search-input" class="form-control"/>
            <input type="submit" name="search-form" value="SEARCH" class="search-button" />
          </form>
        </section>
-     </div>-->
+     </div><br>
 
      
 
@@ -182,40 +187,50 @@
       if (isset($_GET["action"])) {
          switch ($_GET["action"]) {
              case 'sale':
-                      echo "<p id=\"fname\" >".$_SESSION["fname"]."</p>";
-
-                      echo "<p id=\"profilePic\" style=\"color:red;\">".$_SESSION["profilepic"]."</p>";
-
                   show_items_list($_GET["userid"], $db);
                  break;
             case 'notification':
                echo "<ul>".show_Notifications($_GET["userid"], $db, $UserAuthentication)."</ul>"; 
                  break;
             case 'services':
-                 show_service_list($_GET["userid"]); 
+                 show_service_list($_GET["userid"],$db); 
                  break;
             case 'internship':
                 
-                 show_internship_list($_GET["userid"]); 
+                 show_internship_list($_GET["userid"],$db); 
                  break;
              
              default:
-                 $all_posts->display_ExistingPost($array_post, $db); 
+                 echo "<li class=\"row no-padding  \">".
+                   "<h5 class=\"col-xs-12 text-muted text-muted no-user-text no-padding no-margin \" >NOTHING IN THIS CATEGORY YET! </h5>".
+            "</li>";
                  break;
          }
       }
+      
     
      //show all posts by default as soon as the home page is shown.
-      if (isset($_GET["userid"])&&(count($_GET)===1)){ 
+     if (isset($_GET["userid"])&&(count($_GET)===1)){ 
+       echo "<div class=\"row no-padding no-margin \">";
+         new NewPost(); //creating a new post, contructure default @param is true
+         echo "<p id=\"fname\" style=\"display:none;\">".$_SESSION["fname"]."</p>";
+         echo "<p id=\"lname\" style=\"display:none;\">".$_SESSION["lname"]."</p>";
+         echo "<p id=\"userid\" style=\"display:none;\">".$_SESSION["userid"]."</p>";
+         echo "<p id=\"profilePic\" style=\"display:none;\">".$_SESSION["profilepic"]."</p>";
+       echo "</div>";
+       echo "<div id=\"wall\" class=\"row no-padding no-margin myschool_wall\">".
+            "<ul id=\"posts\" class=\"no-padding no-margin myschool_wall\">";
          $array_post = $db->select("post");
          $all_posts = new Post();
          $all_posts->display_ExistingPost($array_post,$db);
-         if(($array_post ===false) || (array_key_exists("postid", $array_post))){ 
-             echo "<p id=\"lastlistid\" style=\"display:none;\" >0</p>";
-            }else{
-              echo "<p id=\"lastlistid\" style=\"display:none;\" >".count($array_post)."</p>";
-            }
+       if(($array_post ===false) || (array_key_exists("postid", $array_post))){ 
+         echo "<p id=\"lastlistid\" style=\"display:none;\" >0</p>";
+        }else{
+         echo "<p id=\"lastlistid\" style=\"display:none;\" >".count($array_post)."</p>";
         }
+        echo "</ul>".
+       "</div>";
+      }
 
       //we are showing  each item posted for sale one by one, by clicking the next and prev button
       if (isset($_GET["itnumb"])){ show_each_item($_GET["userid"],$_GET["itnumb"]); }
@@ -229,9 +244,9 @@
       
       //we are showing  each internship posted one by one, by clicking the internship title 
       //from the table containing all internships
-      if(isset($_GET["intid"])&&($_GET["intid"]!==false)){show_each_Internship($_GET["userid"]);}
+      if(isset($_GET["intid"])&&($_GET["intid"]!==false)){show_each_Internship($db,$_GET["userid"]);}
       //we are showing  all interniships all together, by clicking the expand all button
-      if(isset($_GET["expInt"])&&($_GET["expInt"]==true)){show_each_Internship($_GET["userid"]);}
+      if(isset($_GET["expInt"])&&($_GET["expInt"]==true)){show_each_Internship($db,$_GET["userid"]);}
 
      //if the query string noti-type =='sale', we are showing  notifications related to sale
       if(isset($_GET["noti-type"])&&($_GET["noti-type"]=='sale')){
@@ -263,9 +278,9 @@
  </main>
 
 
- <aside class= "col-xs-12 col-sm-2 re pro_sbide_bar hidden-xs hidsden-sm no-padding no-margin">
-     <div class="row no-padding no-margin" id="aside-partners">
-       <section class='col-xs-12 no-padding no-margin righttop'>
+ <aside class= "col-xs-12 col-sm-2 pro_sbide_bar hidden-xs no-padding no-margin">
+     <div class="row no-padding no-margin " id="aside-partners">
+       <section class='col-xs-12 no-padding no-margin righttop bet-cat'>
          <h4 class="no-padding no-margin">Hot topics</h4> <hr id="bet-aside-div">
          <ul>
           <li><a href="#">IBM hiring 10 students from MERCY</a></li>
@@ -277,8 +292,8 @@
          </ul>
        </section>
      </div> 
-     <div class="row no-padding no-margin">
-       <section class='col-xs-12 no-padding no-margin righttop'>
+     <div class="row no-padding no-margin ">
+       <section class='col-xs-12 no-padding no-margin righttop bet-cat'>
          <h4 class="no-padding no-margin">Events</h4> <hr id="bet-aside-div">
          <ul>
           <li><a href="#">College inter football game</a></li>

@@ -30,7 +30,7 @@ div.top-sub-menu .partner-icon1{position: relative; border: none !important; bot
 
 /*********************************left aside************************************/
 
-.leftside{
+.lefstside{
 /*position: relative;
 float:left;
 width:17%;*/
@@ -40,10 +40,14 @@ border: 1px solid green;
 
 /*elements under category  in the .leftside */
 .leftside ul  {
-
 }
 
-
+.bet-cat
+ {
+  width: 98%;
+background-image: url('../../images/seamless_paper_texture.png');
+margin-bottom: 10px !important;
+}
 /*group of elements in each different categoris .leftside including h5 tags*/
 .leftside ul ul  {
 /*position: relative;

@@ -35,6 +35,6 @@
      $user = unserialize($_SESSION['valid_user']);
      $_SESSION['valid_user'] = serialize($UserAuthentication->get_user($user->email));
     }
- 
 
+             
 ?>

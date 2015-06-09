@@ -76,15 +76,30 @@
    }
   }
 
+  //this function is to check the resume upload only take a filename, and check its type
+  //we want the resume to have only these extenssions : "docx", "txt", "pdf".
+  //if the upload file's extenssion is not one of these, it will return an error
+  function check_resume_file_type($filename){
+   
+   $filename = strtolower($filename);
+   $filename = preg_replace('/\s+/', '', $filename);
+   $extension = array("docx", "txt", "pdf", "PDF");
+   $file_in_array = explode(".", $filename );
+   $file_extension = end($file_in_array);
+   if (!in_array($file_extension, $extension)) {
+    echo  "this kind of file type is not allowed for resume";
+   }
+  }
+
   //this function take a filename, and the directory we to move our file in
   //if the file extenssion is image, it will create a sub directory called "image/" in $user_dir_name
   //if the file extenssion is txt, it will create a sub directory called "text/" in $user_dir_name
   //if the file extenssion is docx, it will create a sub directory called "docx/" in $user_dir_name
   //get_file_dir($userid , $email, $filename) return the name of user's upload dir
   // it should be one of this: 
-  // "../userfiles/userdid_email/image for image files ;
-  // "../userfiles/userdid_email/text for text files;
-  // "../userfiles/userdid_email/docx for window doc files;
+  // "../userfiles/userdid/image for image files ;
+  // "../userfiles/userdid/text for text files;
+  // "../userfiles/userdid/docx for window doc files;
   // userid and email are the current userid and email respectively
   //we have to first assign a variable the name of the base directory name, 
   //then use that variable as argument in our function, like this:
@@ -108,7 +123,8 @@
          if(!mkdir($upload_txt_dir, 0777, true)){ die("cant create the folder for txt");}; 
         }
      return $upload_txt_dir;        
-    } elseif ($file_extension == "docx") {
+    } elseif (($file_extension == "docx")||($file_extension == "pdf")
+        ||($file_extension == "PDF")) {
       $upload_docx_dir = $user_dir_name."/"."docx/";
       if (!file_exists($upload_docx_dir)) {
        if(!mkdir($upload_docx_dir, 0777, true)){ die("cant create the folder for docx");}; 
@@ -133,6 +149,27 @@
    if (file_exists($file_location)) {
       $file_location = $base_dir."/".$filename.'_'.$time;  
     } 
+
+    if (@!move_uploaded_file($_FILES[$input_name]["tmp_name"], $file_location ));{
+      return false;
+    }
+    
+    return true;
+  }
+
+  //this is only for resume
+  //we move the file to a safe place in our server
+  //we have to first assign a variable the name of the base directory name, 
+  //then use that variable as argument in our function, like this:
+  // the $input_name is the <input> element attribute name
+  // var $base_dir = get_file_dir($user_dir_name, $filename);
+
+ function move_resume_file($filename, $input_name, $base_dir){
+   
+   $filename = strtolower($filename);
+   $filename = preg_replace('/\s+/', '', $filename);
+   $file_location = $base_dir."/".$filename;
+    
 
     if (@!move_uploaded_file($_FILES[$input_name]["tmp_name"], $file_location ));{
       return false;
@@ -311,7 +348,7 @@
 
           //echo "<div class =\"user-each-pic-name\">";
           //echo "</br>";
-          echo "<div class =\"user-each-pic re\">".
+          echo "<div class =\"user-each-pic\">".
           "<img src= $path".'?name='.$real_name." alt= $real_name class = \"user-imxg img-responsive\">".
           "<input type=\"checkbox\"  class=\"chck\"  form=\"post-form\" name=\"img-chk[]\" value=\"".$path."\" /></div>";
           $i++;
@@ -325,7 +362,7 @@
        //we want the we want a radiobutton to appear on top of each picture,
        //so user can use only on to be his profile pic
        echo "<form  action=\"profile.php?userid=".$userid."\" method=\"post\" id=\"user-profile-pic\" >";
-       echo "<input type=\"submit\" name=\"profile-pic-form\" value=\"choose\" class=\"signup-button pro-btn\" />";
+       echo '';
        foreach ($pic_array as $name => $path ) {
          if ((($i%3) === 0) ||($i ===0)) {
            echo "<div id=\"userpict\" class=\"row no-padding no-margin \">";
@@ -336,14 +373,14 @@
          //then we take the filename without extenssion
          $real_name = basename($path , $ext);
 
-         echo "<div class =\"col-xs-4 user-each-pic-name no-padfding no-marfgin \">".
-               "<div class=\"row no-padding no-margin \">".
+         echo "<div class =\"col-xs-4 user-each-pic-name no-padfding no-marfgin\" id=\"".$i."\">".
+               "<div class=\"row no-padding no-margin \" >".
                  "<h4 class=\"col-xs-12 no-paddfing no-mfargin\">".
                    "<small>".$real_name."</small>".
                  "</h4>".
                  "<div class =\"col-xs-12 no-padding no-margin user-each-pic\">".
-                   "<img src= $path".'?name='.$real_name." alt= $real_name class = \"usder-img img-responsive\" >".
-                   "<input type=\"radio\"  class=\"chck\" name=\"img-chk\" value=\"".$path."\" />".
+                   "<img src= $path".'?name='.$real_name." alt= $real_name class = \"usedr-img img-responsive\"  >".
+                   "<input type=\"radio\"  class=\"chck\" name=\"img-chk\" value=\"".$path."\" id=\"pro-img-".$i."\"/>".
                  "</div>".
                "</div>".
              "</div>";
@@ -359,6 +396,10 @@
             "<h5 class=\"col-xs-12 text-muted no-item-text no-margin \" > NO PICTURE YET !</h5>".
          "</li>";
       }
+    }else{//the user  doesnt not have any picture at all
+        echo "<li class=\"row no-padding  \">".
+            "<h5 class=\"col-xs-12 text-muted no-item-text no-margin \" > NO PICTURE YET !</h5>".
+         "</li>";
     }
   }
 

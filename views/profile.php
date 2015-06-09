@@ -160,6 +160,9 @@
          $UserAuthentication->login_user($email, $password);
         header('location: profile.php?'.'userid='.$_SESSION['userid']);
 
+         
+        
+
          //a folder will be create for the user.
          //that folder contains his pics, his docs, etcc..
          //let take off the slashes from the email 
@@ -197,7 +200,14 @@
      //let create header
      create_header('profile', '../assets/stylesheets/MyschoolprofileCss.css');
      create_header_menu($_SESSION['numb_noti']);
-    // echo "<p> WELCOME USER:".$_SESSION['fname']." ".$_SESSION['lname']; 
+
+      //checking to see if this the page of the real user
+         //the one who is logged in and on his page
+         $right_user = false;
+         if(($UserAuthentication->is_right_user($_GET["userid"]) ===true)&&
+           (isset($_GET['userid'])&&($_GET['userid'] !=''))){//if right user ==true
+           $right_user = true;
+          } 
     }
     catch (Exception $ex) {
         create_header("problem");
@@ -214,10 +224,10 @@
 
 <div class=clear></div>
 <div class="container">
-  <div class="row profileintro no-padding no-margin">
+  <div class="row profileintro no-paddding no-madrgin">
    <section class="col-xs-12 col-sm-3 profilepic-and-other no-padding no-margin">
      <section class="row profilepic no-padding no-margin">
-       <div class="col-xs-12 no-padding no-margin  re ">
+       <div class="col-xs-12 no-padding no-margin ">
          <?php
           $UserAuthentication->do_profilePic($UserAuthentication->user->profilepic,"img-cirjcle", "","");
           ?>
@@ -231,6 +241,9 @@
          </form>
 
       </section>
+      <div class="row user-name-and-status visible-xs-block">
+       <?php $UserAuthentication->do_header($_GET["userid"]);  ?>
+      </div>
       <section class="row">
        <section class="col-xs-12" >
          <section class="row no-padding no-margin pro-pic-bottom-details ">
@@ -253,15 +266,42 @@
              <h5>|</h5>
            </section>
 
-           <section class="col-xs-7" >
+           <section class="col-xs-7" >         
+
              <?php
-               $profile_join_date = new DateTime($_SESSION["join_date"]);
+               $profile_join_date = new DateTime($UserAuthentication->user->join_date);
                 echo "<h5>Member since ".$profile_join_date->format('Y')."</h5>";
               ?>
            </section>
            
-           <section class="col-xs-12" >
-           <?php
+           
+            <?php
+            echo "<section class=\"col-xs-12\" >";
+
+            if($right_user ===true){
+              echo "<form  action=\"userfiles.php?userid=".$_GET['userid']."&slider=false\" method=\"post\"".
+                      "enctype=\"multipart/form-data\"  id=\"upload-pic\" class=\"form-horizohntal\" name=\"resume-form\"> ".
+                     "<div class=\"form-group sr-only\" >".
+                       "<label for=\"MAX_FILE_SIZE\" class=\"sr-only\">MAX FILE SIZE</label>".
+                       "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"40000000\">".
+                     "</div>".
+                     "<div class=\"form-group \" >".
+                      "<div class=\"col-xs-12 \">".
+
+                     "<label for=\"file_upload\" class=\"sr-only\">file upload</label>".
+                     "<input type=\"file\" name=\"filename\" id=\"file_upload\" >".
+                     "</div>".
+                     "</div>".
+                     "<span class=\"error\" id=\"file-upload-err\" style=\"display:none\"> Post is empty</span>".
+                     "<div class=\"form-group \" >".
+                       "<div class=\"col-xs-12 no-padding no-margin \">".
+                         "<input type=\"submit\" name=\"upload-new-resume-form\" value=\"Upload New resume\" ".
+                           " class=\"btn upload-new-resume-btn img-rounded\" style=\"outline:0 !important; color:white;\">".
+                       "</div>".
+                     "</div>".
+                   "</form>";
+              
+            }else{
              echo "<form  action=\"../controller/partner_request.php?".'userid='.
                     $_GET["userid"]."\" method=\"\" name=\"become-part-form\" id=\"become-part\">".
                    "<label for=\"part-request-title\" class=\"sr-only\">title of the request</label>".
@@ -275,47 +315,37 @@
                       "<p class=\"text-danger bg-danger not-loggin-danger\" style=\"display:none\">You are not log in!</p>".
                       "<p class=\"text-primary bg-primary part-request-sent\" style=\"display:none\">You already sent a request!</p>".
                       "<p class=\"text-success bg-success part-request-sent-succes\" style=\"display:none\">Your request has been sent!!</p>".
-                      "&nbsp;&nbsp; <span class=\"glyphicon glyphicon-user\">".
+                      "<span class=\"glyphicon glyphicon-user\">".
                         "<span class=\"glyphicon glyphicon-plus\"></span>".
                       "</span>";
                       
-                 echo  "&nbsp;<input type=\"submit\" name=\"part-request-form\" value=\"Become partner\" style=\"outline:0 !important; color:white;\" >";
+                 echo  "<input type=\"submit\" name=\"part-request-form\" value=\"Become partner\" style=\"outline:0 !important; color:white;\" >";
              echo "</form>";
+            }
             ?>
 
-
-          <!--   <form action="../controller/request.php?userid=<?php echo $_SESSION['userid'] ?>"  method="post"  id='become-part'>&nbsp;&nbsp;
-               <span class="glyphicon glyphicon-user">
-               <span class="glyphicon glyphicon-plus"></span>
-               </span>
-               <input type="button" value="Become partner">
-             </form>-->
            </section>
 
            <section class="col-xs-12" >
-             <form action="profile.php?userid=<?php echo $_GET['userid'] ?>"  method="post"  id='read-resume'>&nbsp;&nbsp;
-               <span class="glyphicon glyphicon-file"></span>
-               <input type="button" value="Read My Resume"
-                 <?php  echo "onclick=\"window.location.href='".'profile.php?userid='.
-                   $_GET['userid']."'\"";
-                  ?>
-                >
-             </form>
+               <?php 
+                  $file = '../userfiles/'.$_GET['userid'].'/docx/resume-alamatounkara-formerge.docx';
+                 echo "<a class=\"btn btn-default\" href=\"files.php?userid=".
+                   $_GET['userid'].'&file='.$file."\" role=\"button\"><span class=\"glyphicon glyphicon-file\"></span> Read My Resume</a>";
+               ?>               
            </section>
 
            <section class="col-xs-12" >
-             <form action="profile.php?userid=<?php echo $_GET['userid'] ?>"  method="post"  id='send-message'>&nbsp;&nbsp;
-               <span class="glyphicon glyphicon-envelope"></span>
-               <input type="button" value="Send message"
-                 <?php  echo "onclick=\"window.location.href='".'profile.php?userid='.
-                   $_GET['userid']."'\"";
-                  ?>
-                >
-             </form>
+             <?php 
+              echo "<a class=\"btn btn-default\" href=\"files.php?userid=".
+                   $_GET['userid'].'&file='.$file."\" role=\"button\" id='send-message'><span class=\"glyphicon glyphicon-envelope\"></span> Send message&nbsp;&nbsp;&nbsp;&nbsp;</a>";
+             ?>               
            </section>
 
            <section class="col-xs-12 tutorial-help" >
            <?php
+           if($right_user ===true){//we dont want this to appear when user is on his own page
+              
+            }else{
              echo "<form  action=\"../controller/tutorial_request.php?".'userid='.
                     $_GET["userid"]."\" method=\"\" name=\"tutorial-help-form\" id=\"tutorial-help\">".
                    "<label for=\"tuto-request-title\" class=\"sr-only\">title of the request</label>".
@@ -336,6 +366,7 @@
                       
                <input type="submit" value="Ask for Tutorial help" name="tuto-request-form" aria-describedby="help-tuto-txt" style="outline:0 !important; color:white;">
              </form>
+            <?php } ?> 
            </section>
 
          </section>
@@ -343,22 +374,13 @@
      </section>
    </section>
 
-    <!--
-    <form  action="userfiles.php?userid=<?php echo $_GET['userid']."&slider=false"; ?>"  method="post" enctype="multipart/form-data"  id="upload-pic"> 
-            <input type="hidden" name="MAX_FILE_SIZE" value="40000000"> 
-            <input type="submit" name="upload-form" value="Upload me!"  class="upload-btn" >
-            <input type="file" name="filename" id="file_upload" >
-            <span class="error" id="file-upload-err" style="display:none"> Post is empty</span>
-    </form> -->
-   
-   
-     
+  
    <section class="col-xs-12 col-sm-9 profiledetails"> 
-     <div class="row user-name-and-status">
+     <div class="row user-name-and-status hidden-xs">
        <?php $UserAuthentication->do_header($_GET["userid"]);  ?>
      </div>
 
-     <div class="row pro-overview re"> <!-- navbar navbar-default   navbar navbar-default-->
+     <div class="row pro-overview "> <!-- navbar navbar-default   navbar navbar-default-->
        <nav class ="profile_header">
           <section class="">
            <ul class="">
@@ -366,38 +388,19 @@
              <li><header id="about-header" >About</header><hr id="line-below-abt-header"></li>
              <li><header id="project-header" >Projects</header> <hr id="line-below-pro-header"></li>
              <li><header id="partner-header" >Homeworks</header><hr id="line-below-part-header"></li>
-             <li class="pull-right hidden-xs">
-               <header id="edit-header" >
-                 <button type="button" class="btn btn-link">Edit</button>
-               </header>
-             </li>
-             <li class="pull-right visible-xs">
-               <header id="edit-header" >
-                 <button type="button" class="btn btn-link">
-                   <span class="glyphicon glyphicon-edit"></span>
-                 </button>
-               </header>
-             </li>
+             <?php
+               if($UserAuthentication->is_right_user($_GET["userid"]) ===true){
+                 echo "<li class=\"pull-right hidden-xs\">".
+                       "<header id=\"edit-header\" >".
+                         "<button type=\"button\" class=\"btn btn-link\">Edit</button>".
+                       "</header>".
+                     "</li>";
+                }
+             ?>
            </ul>
          </section>
        </nav>
-       <!--<div class="row gggd">
-        <section class="col-xs-2 no-padding no-margin">
-         <hr id="line-below-smry-header">
-        </section>
-        <section class="col-xs-2 no-padding no-margin">
-         <hr id="line-below-abt-header">
-        </section>
-        <section class="col-xs-2 no-padding no-margin">
-         <hr id="line-below-pro-header">
-        </section>
-        <section class="col-xs-2 no-padding no-margin">
-         <hr id="line-below-part-header">
-        </section>
-        <section class="col-xs-4 no-padding no-margin">
-         <hr id="line-below-nav-header">
-        </section>
-       </div>-->
+       
       <hr id="line-below-nav-header">
        <section class="col-xs-12  no-padding " id="all-about-user">
 <!--<div class="row  no-padding no-margin" id ="inner-for-scroll">-->
@@ -407,15 +410,45 @@
              ?>
            </div>
 
-           <div class="col-xs-12" id="profile_project_content" style="display:none;">
-             <?php echo "NO Project yet!"; ?>
+           <div class="row " id="profile_project_content" style="display:none;" >
+             <div class="col-xs-12 " >
+               <?php echo "NO Project yet!"; ?>
+             </div>
            </div>
 
-           <div class="col-xs-12" id="profile_partner_content" style="display:none;">
-             <?php $UserAuthentication->get_FormatUserPartner($_GET["userid"]);?>
+           <div class="row " id="profile_partner_content" style="display:none;">
+             <div class="col-xs-12 " >
+             <?php 
+             if($right_user ===true){
+               echo "<form  action=\"userfiles.php?userid=".$_GET['userid']."&slider=false\" method=\"post\"".
+                      "enctype=\"multipart/form-data\"  id=\"upload-pic\" class=\"form-horizohntal\"> ".
+                     "<div class=\"form-group sr-only\" >".
+                       "<label for=\"MAX_FILE_SIZE\" class=\"sr-only\">MAX FILE SIZE</label>".
+                       "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"40000000\">".
+                     "</div>".
+                     "<div class=\"form-group \" >".
+                      "<div class=\"col-xs-12 \">".
+
+                     "<label for=\"file_upload\" class=\"sr-only\">file upload</label>".
+                     "<input type=\"file\" name=\"filename\" id=\"file_upload\" >".
+                     "</div>".
+                     "</div>".
+                     "<span class=\"error\" id=\"file-upload-err\" style=\"display:none\"> Post is empty</span>".
+                     "<div class=\"form-group \" >".
+                       "<div class=\"col-xs-12 \">".
+                         "<input type=\"submit\" name=\"upload-form\" value=\"Upload me!\"  class=\"btn upload-btn  img-rounded\" >".
+                       "</div>".
+                     "</div>".
+                   "</form>";
+            }
+
+
+             ?>
+           </div>
            </div>
 
-           <div class="col-xs-12" id="profile_intro_yourself" style="display:none;">
+           <div class="row " id="profile_intro_yourself" style="display:none;">
+              <div class="col-xs-12" >
              <form  action="" method="POST" id="about-form" >
                <?php 
                  $UserAuthentication->get_userAbout($_GET["userid"]);
@@ -426,14 +459,14 @@
              </form>
              <button class="signup-button" id="edit-about" style="display:none">EDIT</button>
            </div>
-         <!--</div>-->
+          </div>
        </section>
      </div>
   </section>  
-
+</div>
    
  <div class=clear></div>
- <div class="row no-padding no-margin bottom-pro-intro re">
+ <div class="row no-padding no-margin bottom-pro-intro"  >
    <main class="col-xs-12 col-sm-5 main no-padding no-margin">
      <?php
        echo "<div class=\"row no-padding no-margin \">";
@@ -441,7 +474,7 @@
          echo "<p id=\"fname\" style=\"display:none\">".$_SESSION["fname"]."</p>";
          echo "<p id=\"lname\" style=\"display:none\">".$_SESSION["lname"]."</p>";
          echo "<p id=\"userid\" style=\"display:none\">".$_SESSION["userid"]."</p>";
-         echo "<p id=\"profilePic\" style=\"color:red;\">".$_SESSION["profilepic"]."</p>";
+         echo "<p id=\"profilePic\" style=\"display:none\">".$_SESSION["profilepic"]."</p>";
        echo "</div>";
          
 
@@ -566,11 +599,11 @@
          <div class="row no-padding no-margin" id="aside-same-school ">
            <section class='col-xs-12 no-padding no-margin righttop '>
              <h4 class="no-padding no-margin">Users from
-               <?php echo $_SESSION["college"];?> 
+               <?php echo $UserAuthentication->user->college;?> 
              </h4> <hr id="bet-aside-div">
              <ul class="no-padding no-margin">
                <?php
-                 $UserAuthentication->showUserFromSameSchool($db,$_GET["userid"],$_SESSION["college"]);
+                 $UserAuthentication->showUserFromSameSchool($db,$_GET["userid"],$UserAuthentication->user->college);
                 ?> 
              </ul>
            </section>

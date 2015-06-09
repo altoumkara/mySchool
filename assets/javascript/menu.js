@@ -10,7 +10,7 @@ $(document).ready(function(){
 })
 
 /*show all home menu by clicking the menu bar in front of the home tab*/
-function show_home_menu(){
+function show_home_menu(){ 
 	$("#menu-home").click(function(){
 		$("#all-home-menu").slideToggle();
 	});

@@ -115,7 +115,7 @@
          //getting the list of a user's partners
          $array_partner = $db->select("userpartner",  'where userid ='.$_SESSION['userid'], "partnerid");
           //veryfy if $array class is not empty
-         if(isset($array_class) && !empty($array_class)){
+         //if(isset($array_class) && !empty($array_class)){
             $_SESSION["cname"] = array();
             $_SESSION["areyougoodat"] = array();
              /* fetch associative array */
@@ -135,10 +135,10 @@
               if(isset($array_partner) && !empty($array_partner)){ //numbeer od partner
                 $_SESSION["numb_0f_partner"] = count($array_partner);
               }
-             return true;
-            }
+             //return true;
+            //}
 
-            return false;
+            //return false;
         }
 
         //the collection of class and how good student is in that class
@@ -195,8 +195,12 @@
          if($this->is_right_user($userid) ===true){
            //if((is_user_online($userid) ===true)&&($user->online === '0')){
            //echo "<div class=\"col-xs-10 re\">".
-           echo "<h3  id=\"user_name\" class = \"col-xs-10 col-md-10 re\">".$_SESSION["fname"]."   ".$_SESSION["lname"]."</h3>";
-           echo "<section  class = \"col-xs-2 col-md-1 online_Status no-margin no-padding\">";
+           echo "<h3  id=\"user_name\" class = \"col-xs-10 pull-left col-md-10\">".$_SESSION["fname"]."   ".$_SESSION["lname"].
+                 "<button type=\"button\" id=\"edit-header\" class=\"btn btn-link pull-left visible-xs col-xs-3\">".
+                   "<span class=\"glyphicon glyphicon-edit\"></span>".
+                 "</button>".
+                "</h3>";
+           echo "<section  class = \"col-xs-2 col-md-1 online_Status pull-right no-margin no-padding\">";
                 // if ($UserAuthentication->is_user_online($_GET["userid"])) {
             echo "<h1 class = \"no-margin no-padding\">Online</h1>";
             // echo "<div class=\"row\"><h1 class = \"col-xs-12\">Online</h1></div>";
@@ -212,7 +216,7 @@
          }
         echo "</section>";
          //echo  "<div class=\"row\">".
-          echo "<h4  class = \"col-xs-12 college-header text-muted re\">".$_SESSION["college"]."</h4>";
+          echo "<h4  class = \"col-xs-offset-2 col-xs-10 col-sm-offset-0 col-sm-12 college-header text-muted \">".$_SESSION["college"]."</h4>";
         // "</div>";
         
 
@@ -223,57 +227,59 @@
 //summary of a particular user
      public function do_summary($userid){
       if($this->is_right_user($userid) ===true){
-       echo "<div class=\"col-xs-12 jj no-padding no-margin\">";
-         $username =(($_SESSION["username"] !='')&&($_SESSION["username"] !='null'))? $_SESSION["username"]: 'unknown';
+       echo "<div class=\"col-xs-12  no-padding no-margin\">";
+         $username =(($_SESSION["username"] !='')&&($_SESSION["username"] !='null'))? $_SESSION["username"]: '------';
           $major =(($_SESSION["major"] !='')&&($_SESSION["major"] !='null'))? $_SESSION["major"]: 'no major';          
 
          echo "<div class=\"row no-padding no-margin\">".
-               "<div class=\"col-xs-12 col-md-6 re   no-padding no-margin\">".
+               "<div class=\"col-xs-12 col-md-6 no-padding no-margin\">".
                  "<div class=\"row no-padding no-margin\">".
-                   "<div class=\"col-xs-12 col-md-10 no-padding no-margin\"><h4>Personal</h4><hr id=\"sub-hdr-line\"></div>".
+                   "<div class=\"col-xs-12 col-md-10 no-padding no-margin\"><h4 class=\"text-muted\">Personal</h4><hr id=\"sub-hdr-line\"></div>".
                  "</div>". 
-                 "<div class=\"row re no-padding no-margin\">".
-                   "<div class=\"col-xs-4  fu no-padding no-margin\"><h5>Full name: </h5></div>".
-                   "<div class=\"col-xs-8 fa no-padding no-margin\"><p>".$_SESSION["fname"]." ".$_SESSION["lname"]."</p></div>".
+                 "<div class=\"row no-padding no-margin\">".
+                   "<div class=\"col-xs-4  no-padding no-margin\"><h5 class=\"text-muted\">Full name: </h5></div>".
+                   "<div class=\"col-xs-8 no-padding no-margin\"><p>".$_SESSION["fname"]." ".$_SESSION["lname"]."</p></div>".
                  "</div>".
                  "<div class=\"row no-padding no-margin\">".
-                   "<div class=\"col-xs-4 no-padding no-margin\"><h5>username: </h5></div>".
+                   "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">username: </h5></div>".
                    "<div class=\"col-xs-8 no-padding no-margin\"><p>".$username."</p></div>".
                  "</div>".
                  "<div class=\"row no-padding no-margin\">".
-                   "<div class=\"col-xs-4 no-padding no-margin\"><h5>Gender: </h6></div>".
+                   "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Gender: </h6></div>".
                    "<div class=\"col-xs-8 no-padding no-margin\"><p>".$_SESSION["sex"]."</p></div>".
                  "</div>".
                  "<div class=\"row no-padding no-margin\">".
-                   "<div class=\"col-xs-4 no-padding no-margin\"><h5>Major: </h5></div>".
+                   "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Major: </h5></div>".
                    "<div class=\"col-xs-8 no-padding no-margin\"><p>".$major."</p></div>".
                  "</div>".
                  "<div class=\"row no-padding no-margin\">".
-                   "<div class=\"col-xs-4 no-padding no-margin\"><h5>Title:</h5></div>".
+                   "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Title:</h5></div>".
                    "<div class=\"col-xs-8 no-padding no-margin\"><p>".$_SESSION["title "]."</p></div>".
                  "</div>".
                  "<div class=\"row no-padding no-margin\">".
-                   "<div class=\"col-xs-4 no-padding no-margin\"><h5>Born in:</h5></div>".
+                   "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Born in:</h5></div>".
                    "<div class=\"col-xs-8 no-padding no-margin\"><p>".$_SESSION["birthyear"]."</p></div>".
                  "</div>".
                  //"</div>".
                "</div>";
            
 
-          echo "<div class=\"col-xs-12 re col-md-6 no-padding no-margin\"><div class=\"row no-padding no-margin\">".
+          echo "<div class=\"col-xs-12 col-md-6 no-padding no-margin\"><div class=\"row no-padding no-margin\">".
                  "<div class=\"col-xs-12 col-md-10 no-padding no-margin\"><h4>Performance/Strong in</h4><hr id=\"sub-hdr-line\"></div></div>";
            
            $count_performance = 0; //number of performance initially set to 0.
-           if($this->list_sessionVariable()) {
+          // if($this->list_sessionVariable()) {
+           $this->list_sessionVariable();
+           if ($_SESSION["areyougoodat"][0]!==null) {//this means the $_SESSION["areyougoodat"] is empty
              // echo "<td class=\"td-right\"><h5>Perforance</h5>";
              for ($i=0; ($i <sizeof($_SESSION["cname"]))&&($i <sizeof($_SESSION["areyougoodat"])) ; $i++) { 
                  echo "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-4 no-padding no-margin\"><h5>".$_SESSION["areyougoodat"][$i]." at: </h5></div>".
+                 "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">".$_SESSION["areyougoodat"][$i]." at: </h5></div>".
                  "<div class=\"col-xs-8 no-padding no-margin\"><p>".$_SESSION["cname"][$i]."</p></div>".
                 "</div>";
                 $count_performance++;
                 }
-
+           }
              // if number of performance =1, we want to add 2 "+ Add a performance" buttons,
              //because the maximum number of performance is 3.
              if ($count_performance ===1) {
@@ -281,106 +287,111 @@
                   "<div class=\"col-xs-12 \"><button type=\"button\" class=\"btn btn-link no-padding no-margin\"><span class=\"glyphicon glyphicon-plus\"> Add a performance</span></button></div>".
                   "<div class=\"col-xs-12 \"><button type=\"button\" class=\"btn btn-link no-padding no-margin\"><span class=\"glyphicon glyphicon-plus\"> Add a performance</span></button></div>".
                 "</div>";
-             }
-             //if number of performance =2, we want to add one more "+ Add a performance"  buttons,
-             //because the maximum number of performance is 3.
-             if ($count_performance ===2) {
+             }elseif($count_performance ===2) {
+               //if number of performance =2, we want to add one more "+ Add a performance"  buttons,
+               //because the maximum number of performance is 3.
                echo "<div class=\"row no-padding no-margin\">".
                   "<div class=\"col-xs-12 \"><button type=\"button\" class=\"btn btn-link no-padding no-margin\"><span class=\"glyphicon glyphicon-plus\"> Add a performance</span></button></div>".
                 "</div>";
-             }
-          }else{
-            echo "<div class=\"row no-padding no-margin\">".
-                  "<div class=\"col-xs-12 \"><p class=\"text-muted text-center\"> No performance yet!</p></div>".
-                  "<div class=\"col-xs-12\"><button type=\"button\" class=\"btn btn-link no-padding no-margin\"><span class=\"glyphicon glyphicon-plus\"> Add a performance</span></button></div>".
-                  "<div class=\"col-xs-12\"><button type=\"button\" class=\"btn btn-link no-padding no-margin\"><span class=\"glyphicon glyphicon-plus\"> Add a performance</span></button></div>".
-                  "<div class=\"col-xs-12 \"><button type=\"button\" class=\"btn btn-link no-padding no-margin\"><span class=\"glyphicon glyphicon-plus\"> Add a performance</span></button></div>".
-                "</div>";
-          }
-          echo "</div></div></div>";  
+             }else{
+               echo "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-12 \"><p class=\"text-muted text-center\"> No performance yet!</p></div>".
+                     "<div class=\"col-xs-12\"><button type=\"button\" class=\"btn btn-link no-padding no-margin\"><span class=\"glyphicon glyphicon-plus\"> Add a performance</span></button></div>".
+                     "<div class=\"col-xs-12\"><button type=\"button\" class=\"btn btn-link no-padding no-margin\"><span class=\"glyphicon glyphicon-plus\"> Add a performance</span></button></div>".
+                     "<div class=\"col-xs-12 \"><button type=\"button\" class=\"btn btn-link no-padding no-margin\"><span class=\"glyphicon glyphicon-plus\"> Add a performance</span></button></div>".
+                   "</div>";
+              }
+             echo "</div></div>";  
 
           
 
-            /*this will make sure the column is reset when using a bigger screen(md)*/
-          echo "<div class=\"clearfix visible-md-block\"></div>";
-               
-          $phone =(($_SESSION["phone"] !='')&&($_SESSION["phone"] !='null'))? $_SESSION["phone"]: 'no number';
-          echo "<div class=\"col-xs-12 re col-md-6 td-right   no-padding no-margin\"><div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-12 col-md-10 no-padding no-margin\"><h4>Contact</h4><hr id=\"sub-hdr-line\"></div></div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-4 no-padding no-margin\"><h5>Phone: </h5></div>".
-                 "<div class=\"col-xs-8 no-padding no-margin\"><p>".$phone."</p></div>".
-                "</div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-4 no-padding no-margin\"><h5>Email: </h5></div>".
-                 "<div class=\"col-xs-8 no-padding no-margin\"><p><a href=\"mailto=\"#\"\">".$_SESSION["email"]."</a><p></div>".
-                "</div>".
-             "</div>";
+             /*this will make sure the column is reset when using a bigger screen(md)*/
+             echo "<div class=\"clearfix visible-md-block\"></div>";
+
+             echo "<div class=\"row  no-padding no-margin\">";
+
+             $phone =(($_SESSION["phone"] !='')&&($_SESSION["phone"] !='null'))? $_SESSION["phone"]: 'no number';
+             echo "<div class=\"col-xs-12 col-md-6 td-right   no-padding no-margin\">".
+                   "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-12 col-md-10 no-padding no-margin\"><h4>Contact</h4><hr id=\"sub-hdr-line\"></div>".
+                   "</div>".
+                   "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Phone: </h5></div>".
+                     "<div class=\"col-xs-8 no-padding no-margin\"><p>".$phone."</p></div>".
+                   "</div>".
+                   "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Email: </h5></div>".
+                     "<div class=\"col-xs-8 no-padding no-margin\"><p><a href=\"mailto=\"#\"\">".$_SESSION["email"]."</a></p></div>".
+                   "</div>".
+                 "</div>";
             
-         echo "<div class=\"col-xs-12 re col-md-6 td-right   no-padding no-margin\">
-                <div class=\"row no-padding no-margin\">".
-                   "<div class=\"col-xs-12 col-md-10 no-padding no-margin\">
-                     <h4>Work as</h4><hr id=\"sub-hdr-line\">
-                   </div>
-                </div>";
+             echo "<div class=\"col-xs-12 col-md-6 td-right   no-padding no-margin\">".
+                    "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-12 col-md-10 no-padding no-margin\">".
+                        "<h4>Work as</h4><hr id=\"sub-hdr-line\">".
+                     "</div>".
+                    "</div>";
                 
-           if(($_SESSION["worktitle"] != "")&&($_SESSION["worktitle"] != 'null')&&
-              ($_SESSION["worktitle"] != "Null")&&($_SESSION["worktitle"] !== NULL)){
-             echo "<div class=\"row no-padding no-margin\">".
-                   "<div class=\"col-xs-4 no-padding no-margin\"><h5>Job: </h5></div>".
-                   "<div class=\"col-xs-8 no-padding no-margin\"><p>".$_SESSION["worktitle"]."</p></div>".
-                 "</div>";
-            }else{
-             echo "<div class=\"row no-padding no-margin\">".
-                   "<div class=\"col-xs-12 \"><p class=\"text-muted text-center\"> No job yet!</p></div>".
-                   "<div class=\"col-xs-12 \">".
-                     "<button type=\"button\" class=\"btn btn-link no-padding no-margin\">
-                       <span class=\"glyphicon glyphicon-plus\"> Add a job</span>".
-                     "</button>".
+             if(($_SESSION["worktitle"] != "")&&($_SESSION["worktitle"] != 'null')&&
+                 ($_SESSION["worktitle"] != "Null")&&($_SESSION["worktitle"] !== NULL)){
+               echo "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Job: </h5></div>".
+                     "<div class=\"col-xs-8 no-padding no-margin\"><p>".$_SESSION["worktitle"]."</p></div>".
+                   "</div>";
+             }else{
+               echo "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-12 \">".
+                       "<button type=\"button\" class=\"btn btn-link no-padding no-margin\">".
+                         "<span class=\"glyphicon glyphicon-plus\"> Add a job</span>".
+                       "</button>".
+                     "</div>".
+                   "</div>";
+              }
+             echo "</div>";
+             echo "</div>";
+
+
+             //this will make sure the column is reset when using a bigger screen(md)*/
+             echo "<div class=\"clearfix visible-md-block\"></div>";
+
+             echo "<div class=\"row  no-padding no-margin\">";
+
+             echo "<div class=\"col-xs-12  col-md-6 td-right  no-padding no-margin \"><div class=\"row no-padding no-margin\">".
+                   "<div class=\"col-xs-12 col-md-10  no-padding no-margin \"><h4>Attending</h4><hr id=\"sub-hdr-line\"></div></div>".
+                   "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">School: </h5></div>".
+                     "<div class=\"col-xs-8 no-padding no-margin\"><p>".$_SESSION["college"]."</p></div>".
                    "</div>".
                  "</div>";
-            }
-          echo "</div>";
-            
 
+           
 
-           /*this will make sure the column is reset when using a bigger screen(md)*/
-          echo "<div class=\"clearfix visible-md-block\"></div>";
-          
-         echo "<div class=\"col-xs-12 re col-md-6 td-right  no-padding no-margin \"><div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-12 col-md-10  no-padding no-margin \"><h4>Attending</h4><hr id=\"sub-hdr-line\"></div></div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-4 no-padding no-margin\"><h5>School: </h5></div>".
-                 "<div class=\"col-xs-8 no-padding no-margin\"><p>".$_SESSION["college"]."</p></div>".
-                "</div>".
-            "</div>";
+             echo "<div class=\"col-xs-12  col-md-6 td-right   no-padding no-margin\">".
+                    "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-12 col-md-10 no-padding no-margin\">".
+                       "<h4>Internship</h4><hr id=\"sub-hdr-line\">".
+                     "</div>".
+                    "</div>";
 
-         
+             if(($_SESSION['internshiptitle'] != '')&&($_SESSION["internshiptitle"] != 'null')&&
+                ($_SESSION["internshiptitle"] !== 'NULL')&&($_SESSION["internshiptitle"] != NULL)){
+               echo "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Name: </h5></div>".
+                     "<div class=\"col-xs-8 no-padding no-margin\"><p>".$_SESSION["internshiptitle"]."</p></div>".
+                   "</div>";
+              }else{
+               echo "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-12 \">".
+                       "<button type=\"button\" class=\"btn btn-link no-padding no-margin\">".
+                         "<span class=\"glyphicon glyphicon-plus\"> Add an internship</span>".
+                       "</button>".
+                     "</div>".
+                   "</div>";
+              }
+              echo "</div>";
+              echo "</div>";
+           // }
 
-         echo "<div class=\"col-xs-12 re col-md-6 td-right   no-padding no-margin\">
-                <div class=\"row no-padding no-margin\">".
-                   "<div class=\"col-xs-12 col-md-10 no-padding no-margin\">
-                     <h4>Internship</h4><hr id=\"sub-hdr-line\">
-                   </div>
-                </div>";
-
-           if(($_SESSION['internshiptitle'] == '')&&($_SESSION["internshiptitle"] != 'null')&&
-              ($_SESSION["internshiptitle"] !== 'NULL')&&($_SESSION["internshiptitle"] != NULL)){
-             echo "<div class=\"row no-padding no-margin\">".
-                   "<div class=\"col-xs-4 no-padding no-margin\"><h5>Name: </h5></div>".
-                   "<div class=\"col-xs-8 no-padding no-margin\"><p>".$_SESSION["internshiptitle"]."</p></div>".
-                 "</div>";
-           }else{
-            echo "<div class=\"row no-padding no-margin\">".
-                   "<div class=\"col-xs-12 \"><p class=\"text-muted text-center\"> No internship yet!</p></div>".
-                   "<div class=\"col-xs-12 \">".
-                     "<button type=\"button\" class=\"btn btn-link no-padding no-margin\">
-                       <span class=\"glyphicon glyphicon-plus\"> Add an internship</span>".
-                     "</button>".
-                   "</div>".
-                "</div>";
-          }
-          echo "</div>";
          /*echo "<div class=\"col-xs-12 re col-md-6 td-right   no-padding no-margin\"><div class=\"row no-padding no-margin\">".
                  "<div class=\"col-xs-12  col-md-10 no-padding no-margin\"><h4>Internship</h4><hr id=\"sub-hdr-line\"></div></div>".
                 "<div class=\"row no-padding no-margin\">".
@@ -396,185 +407,143 @@
         }
       }
 
-/*if((empty($_SESSION["internshiptitle"]) !==true ) || ($_SESSION["internshiptitle"] != "null") ||
-              ($_SESSION["internshiptitle"] !== "Null") || ($_SESSION["internshiptitle"] !== NULL)){
-           echo "<div class=\"col-xs-12 re col-md-6 td-right   no-padding no-margin\"><div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-12 col-md-10 no-padding no-margin\"><h4>Internship</h4><hr id=\"sub-hdr-line\"></div></div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-4 no-padding no-margin\"><h5>Name: </h5></div>".
-                 "<div class=\"col-xs-8 no-padding no-margin\"><p>".var_dump($_SESSION["internshiptitle"])."</p></div>".
-                "</div>".
-              "</div>";
-          }else{
-           echo "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-12 \"><p class=\"text-muted text-center\"> No internship yet!</p></div>".
-                 "<div class=\"col-xs-12 \">".
-                   "<button type=\"button\" class=\"btn btn-link no-padding no-margin\">
-                     <span class=\"glyphicon glyphicon-plus\"> Add an internship</span>".
-                   "</button>".
-                 "</div>".
-                "</div>";
-          }*/
-
-        //summary of a particular user
-   /*  public function do_summary($userid){
-      if($this->is_right_user($userid) ===true){
-          echo "<table class=\"table\">";
-         $username =(($_SESSION["username"] !='')&&($_SESSION["username"] !='null'))? $_SESSION["username"]: 'unknown';
-          $major =(($_SESSION["major"] !='')&&($_SESSION["major"] !='null'))? $_SESSION["major"]: 'no major';          
-
-          echo "<tr><td class=\" \">".
-               "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-12 no-padding no-margin\"><h4>Personal</h4><hr id=\"sub-hdr-line\"></div>".
-                "</div>". 
-               "<div class=\"row re no-padding no-margin\">".
-                 "<div class=\"col-xs-6 fu no-padding no-margin\"><h5>Full name: </h5></div>".
-                 "<div class=\"col-xs-6 fa no-padding no-margin\"><p>".$_SESSION["fname"]." ".$_SESSION["lname"]."</p></div>".
-                "</div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><h5>username: </h5></div>".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><p>".$username."</p></div>".
-                "</div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><h5>Gender: </h6></div>".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><p>".$_SESSION["sex"]."</p></div>".
-                "</div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><h5>Major: </h5></div>".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><p>".$major."</p></div>".
-                "</div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><h5>Title:</h5></div>".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><p>".$_SESSION["title "]."</p></div>".
-                "</div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><h5>Born in:</h5></div>".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><p>".$_SESSION["birthyear"]."</p></div>".
-                "</div>".
-                "</td>".
-                "</div>";
-          echo "<td class=\"td-right  \"><div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-12 no-padding no-margin\"><h4>Performance/Strong in</h4><hr id=\"sub-hdr-line\"></div></div>";
-          if($this->list_sessionVariable()) {
-             // echo "<td class=\"td-right\"><h5>Perforance</h5>";
-             for ($i=0; ($i <sizeof($_SESSION["cname"]))&&($i <sizeof($_SESSION["areyougoodat"])) ; $i++) { 
-                 echo "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><h5>".$_SESSION["areyougoodat"][$i]." at: </h5></div>".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><p>".$_SESSION["cname"][$i]."</p></div>".
-                "</div>";
-                }
-          }
-          echo "</td></tr>";      
-
-          echo "<tr><td class=\"  \"><div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-12 no-padding no-margin\"><h4>Attending</h4><hr id=\"sub-hdr-line\"></div></div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><h5>School: </h5></div>".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><p>".$_SESSION["college"]."</p></div>".
-                "</div>".
-               "</td>";
-               ;
-          $phone =(($_SESSION["phone"] !='')&&($_SESSION["phone"] !='null'))? $_SESSION["phone"]: 'no number';
-          echo "<td class=\"td-right  \"><div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-12 no-padding no-margin\"><h4>Contact</h4><hr id=\"sub-hdr-line\"></div></div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><h5>Phone: </h5></div>".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><p>".$phone."</p></div>".
-                "</div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><h5>Email: </h5></div>".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><p>".$_SESSION["email"]."</p></div>".
-                "</div>".
-                "</td></tr>";
-
-           echo "<tr><td class=\" \"><div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-12 no-padding no-margin\"><h4>Work as</h4><hr id=\"sub-hdr-line\"></div></div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><h5>Job: </h5></div>".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><p>".$_SESSION["title "]."</p></div>".
-                "</div>".
-                "</td>";
-          echo "<td class=\"td-right  \"><div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-12 no-padding no-margin\"><h4>Internship</h4><hr id=\"sub-hdr-line\"></div></div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><h5>Name:</h5></div>".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><p>No internship yet!</p></div>".
-                "</div>".
-                "</td></tr>"; 
-
-          /* $profile_join_date = new DateTime($_SESSION["join_date"]);
-           echo "<tr><td class=\" \"><div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-12 no-padding no-margin\"><h4>Join</h4><hr id=\"sub-hdr-line\"></div></div>".
-                "<div class=\"row no-padding no-margin\">".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><h5>Member since:</h5></div>".
-                 "<div class=\"col-xs-6 no-padding no-margin\"><p>".$profile_join_date->format('Y')."</p></div>".
-                "</div>".
-                "</td></tr>";
-*/
-            
 
 
-            
-      /*   echo "</table>";
-        }else{
-          $this->do_OfflineSummary($userid);
-        }
-      }*/
-
-         //summary of a particular offline user
+    //summary of a particular offline user
     public function do_OfflineSummary($userid){
-       $user = $this->user;
+     $user = $this->user;
+     $username =(($user->username!='')&&($user->username!='null'))? $user->username: 'unknown';
+     $major =(($user->major !='')&&($user->major!='null'))? $user->major: 'no major'; 
+     $sex =(($user->sex ==='M'))? 'Male': 'Female'; 
+    
+     echo "<div class=\"col-xs-12  no-padding no-margin\">";
+         
+         echo "<div class=\"row no-padding no-margin\">".
+               "<div class=\"col-xs-12 col-md-6 no-padding no-margin\">".
+                 "<div class=\"row no-padding no-margin\">".
+                   "<div class=\"col-xs-12 col-md-10 no-padding no-margin\"><h4 class=\"text-muted\">Personal</h4><hr id=\"sub-hdr-line\"></div>".
+                 "</div>". 
+                 "<div class=\"row no-padding no-margin\">".
+                   "<div class=\"col-xs-4  no-padding no-margin\"><h5 class=\"text-muted\">Full name: </h5></div>".
+                   "<div class=\"col-xs-8 no-padding no-margin\"><p>".$user->fname." ".$user->lname."</p></div>".
+                 "</div>".
+                 "<div class=\"row no-padding no-margin\">".
+                   "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">username: </h5></div>".
+                   "<div class=\"col-xs-8 no-padding no-margin\"><p>".$username."</p></div>".
+                 "</div>".
+                 "<div class=\"row no-padding no-margin\">".
+                   "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Gender: </h6></div>".
+                   "<div class=\"col-xs-8 no-padding no-margin\"><p>".$sex."</p></div>".
+                 "</div>".
+                 "<div class=\"row no-padding no-margin\">".
+                   "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Major: </h5></div>".
+                   "<div class=\"col-xs-8 no-padding no-margin\"><p>".$major."</p></div>".
+                 "</div>".
+                 "<div class=\"row no-padding no-margin\">".
+                   "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Title:</h5></div>".
+                   "<div class=\"col-xs-8 no-padding no-margin\"><p>".$user->title."</p></div>".
+                 "</div>".
+                 "<div class=\"row no-padding no-margin\">".
+                   "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Born in:</h5></div>".
+                   "<div class=\"col-xs-8 no-padding no-margin\"><p>".$user->birthyear."</p></div>".
+                 "</div>".
+                 //"</div>".
+               "</div>";
+           
 
-       //first do user profile
-       //do_profilePic($userid,$user->profilepic);
-       $username =(($user->username!='')&&($user->username!='null'))? $user->username: 'unknown';
-          $major =(($user->major !='')&&($user->major!='null'))? $user->major: 'no major'; 
-      echo "<table class=\"table\">";
-       /* echo"<tr><th id=\"user-perso\">Personal</th><th id=\"email\">Email</th><th id=\"phone\">Phone</th>".
-             "<th id=\"addr\">Address</th></tr>*/
-        echo "<tr><td class=\" \"><h4>Personal</h4><hr id=\"sub-hdr-line\">".
-                "<h5>Full name: </h5>"."<p>".$user->fname." ".$user->lname."</p>".
-                "<h5>username: </h5>"."<p>".$username."</p>".
-                "<h5>Gender: </h5>"."<p>".$user->sex."</p>".
-                "<h5>Major: </h5>"."<p>".$major."</p>".
-                "<h5>Title:</h5>"."<p>".$user->title."</p>".
-                "<h5>Born in:</h5>"."<p>".$user->birthyear."</p>".
-                "</td>";
-        echo "<td class=\"td-right  \"><h4>Performance/Strong in</h4><hr id=\"sub-hdr-line\">";
-        if ($this->list_sutdentClassPerformance($userid) ===false) {
-          echo "</br></br>";
-          echo "<p> Not applicable!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>";
-        }else{
-          $offline_user_array =$this->list_sutdentClassPerformance($userid);
-          for ($i=0; ($i <sizeof($offline_user_array[0]["cname"]))&&
-              ($i <sizeof($offline_user_array[1]["areyougoodat"])) ; $i++) { 
-            echo "<h5>".$offline_user_array[1]["areyougoodat"][$i]." at: </h5>"."<p>".
-             $offline_user_array[0]["cname"][$i]."</p>";
-          }
-        }
-        echo "</td></tr>";      
-        echo "<tr><td class=\" \"><h4>Attending</h4><hr id=\"sub-hdr-line\">".
-                "<h5>School: </h5>"."<p>".$user->college."</p>".
-               "</td>";
-        echo "<td class=\"td-right  \"><h4>Contact</h4><hr id=\"sub-hdr-line\">";
-         $phone =(($user->phone !='')&&($user->phone !='null'))? $user->phone: 'no number';
+          echo "<div class=\"col-xs-12 col-md-6 no-padding no-margin\"><div class=\"row no-padding no-margin\">".
+                 "<div class=\"col-xs-12 col-md-10 no-padding no-margin\"><h4>Performance/Strong in</h4><hr id=\"sub-hdr-line\"></div></div>";
+           
+           //$count_performance = 0; //number of performance initially set to 0.
+           if ($this->list_sutdentClassPerformance($userid) ===false) {
+             echo "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-12 \"><p class=\"text-muted text-center\"> No performance yet!</p></div>".
+                   "</div>";
+            }else{
+             $offline_user_array =$this->list_sutdentClassPerformance($userid);
+             for ($i=0; ($i <sizeof($offline_user_array[0]["cname"]))&&
+                ($i <sizeof($offline_user_array[1]["areyougoodat"])) ; $i++) { 
+               echo "<div class=\"row no-padding no-margin\">".
+                 "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">".$offline_user_array[1]["areyougoodat"][$i]." at: </h5></div>".
+                 "<div class=\"col-xs-8 no-padding no-margin\"><p>".$offline_user_array[0]["cname"][$i]."</p></div>".
+                "</div>";
+             }
+            }
+          echo "</div></div>";  
 
-            echo    "<h5>Phone: </h5>"."<p>".$phone."</p>".
-                "<h5>Email: </h5>"."<p>".$user->email."</p>".
-                "</td></tr>";
-        echo "<tr><td class=\" \"><h4>Work as</h4><hr id=\"sub-hdr-line\">".
-                "<h5>Job: </h5>"."<p>".$user->title."</p>".
-                "</td>";
-        echo "<td class=\"td-right  \"><h4>Internship</h4><hr id=\"sub-hdr-line\">".
-                "<h5>Name:</h5>"."<p>No internship yet!</p>".
-                "</td></tr>"; 
-           $profile_join_date = new DateTime($user->join_date);
-        echo "<tr><td class=\" \"><h4>Join</h4><hr id=\"sub-hdr-line\">".
-                "<h5>Member since:</h5>"."<p>".$profile_join_date->format('Y').
-                "</td></tr>";
-         echo "</table>";
 
-        }
+        /*this will make sure the column is reset when using a bigger screen(md)*/
+        echo "<div class=\"clearfix visible-md-block\"></div>";
+
+        echo "<div class=\"row  no-padding no-margin\">";
+
+         $phone =(($user->phone !='')&&($user->phone !='null'))? $user->phone: '-----------';
+             
+             echo "<div class=\"col-xs-12 col-md-6 td-right   no-padding no-margin\">".
+                   "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-12 col-md-10 no-padding no-margin\"><h4>Contact</h4><hr id=\"sub-hdr-line\"></div>".
+                   "</div>".
+                   "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Phone: </h5></div>".
+                     "<div class=\"col-xs-8 no-padding no-margin\"><p>".$phone."</p></div>".
+                   "</div>".
+                   "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Email: </h5></div>".
+                     "<div class=\"col-xs-8 no-padding no-margin\"><p><a href=\"mailto=\"#\"\">".$user->email."</a></p></div>".
+                   "</div>".
+                 "</div>";
+            
+             echo "<div class=\"col-xs-12 col-md-6 td-right   no-padding no-margin\">".
+                    "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-12 col-md-10 no-padding no-margin\">".
+                        "<h4>Work as</h4><hr id=\"sub-hdr-line\">".
+                     "</div>".
+                    "</div>";
+                
+         $worktitle =(($user->worktitle !='')&&($user->worktitle !='null'))? $user->worktitle: 'Nothing for now!';
+             echo "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Job: </h5></div>".
+                     "<div class=\"col-xs-8 no-padding no-margin\"><p>".$worktitle."</p></div>".
+                   "</div>";
+        
+             echo "</div>";
+             echo "</div>";
+
+
+             //this will make sure the column is reset when using a bigger screen(md)*/
+             echo "<div class=\"clearfix visible-md-block\"></div>";
+
+             echo "<div class=\"row  no-padding no-margin\">";
+
+             echo "<div class=\"col-xs-12  col-md-6 td-right  no-padding no-margin \"><div class=\"row no-padding no-margin\">".
+                   "<div class=\"col-xs-12 col-md-10  no-padding no-margin \"><h4>Attending</h4><hr id=\"sub-hdr-line\"></div></div>".
+                   "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">School: </h5></div>".
+                     "<div class=\"col-xs-8 no-padding no-margin\"><p>".$user->college."</p></div>".
+                   "</div>".
+                 "</div>";
+
+           
+
+             echo "<div class=\"col-xs-12  col-md-6 td-right   no-padding no-margin\">".
+                    "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-12 col-md-10 no-padding no-margin\">".
+                       "<h4>Internship</h4><hr id=\"sub-hdr-line\">".
+                     "</div>".
+                    "</div>";
+
+         $internshiptitle =(($user->internshiptitle !='')&&($user->internshiptitle !='null'))? $user->internshiptitle: 'Nothing for now!';
+             echo "<div class=\"row no-padding no-margin\">".
+                     "<div class=\"col-xs-4 no-padding no-margin\"><h5 class=\"text-muted\">Name: </h5></div>".
+                     "<div class=\"col-xs-8 no-padding no-margin\"><p>".$internshiptitle."</p></div>".
+                   "</div>";
+              
+              echo "</div>";
+              echo "</div>";
+        echo "</div>";
+      }
+
+
 
 
         //getting the list of user partner
@@ -636,6 +605,9 @@
           }
          echo "</table>";
         } 
+
+
+
 
         //format user partner for home page
         public function showUserPartner($db,$userid,$partner_ar){
@@ -909,7 +881,7 @@
       }else{  
         //echo "<div id=\"pro-userpict\">";
         echo "<img src= \"../defaultporfilepic/defaultProfileImage.png\" alt=\"default pic\"  
-        class=\"img-responsive ".$image_circle."\"  width=\"".$width."\" height=\"".$height."\">";
+        class=\"img-responsive ".$image_circle."\"  width=\"".$width."\" height=\"".$height."\" style=\"margin: auto;\">";
        // echo "</div>";
       }
     }

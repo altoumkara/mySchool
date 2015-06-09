@@ -29,9 +29,9 @@
     });
 
     //hide about content,project content and partner content when document is loaded
-    $("#profile_intro_yourself").hide();
-    $("#profile_project_content").hide();
-    $("#profile_partner_content").hide();
+    //$("#profile_intro_yourself").hide();
+    //$("#profile_project_content").hide();
+    //$("#profile_partner_content").hide();
 
    //show profile summary            
     showProfieleSummary();
@@ -43,7 +43,7 @@
     showProfieleProject();
   
     //show the list partner of partner on user        
-    showProfielePartner();
+    showProfileHW();
 
     //post form asynchronizely with ajax
     doAjaxPost();
@@ -76,6 +76,10 @@
 
    //sent a request for tutorial help in an ajax way.
    doAjaxTutorialRequest();
+
+   //this function show the 'choose' button for choose a profile on userfile.php
+   //appear next to the pic when mouse if hover it.
+   makeChooseProfileBtnAppear();
   });
 
 
@@ -84,12 +88,26 @@ function orientImage(){
   var height = $('.profilepic img').height();
   //var width = $('.profilepic img').width();
   if (height < 200) {
-    $('.profilepic img').addClass("profilepic-img");
+    $('.profilepic .col-xs-12 img, .righttop img').addClass("profilepic-img");
   }else{
-    $('.profilepic img').removeClass("profilepic-img");
+    $('.profilepic img, .righttop img').removeClass("profilepic-img");
   }
 }  
 
+
+
+//this function show the 'choose' button for choose a profile on userfile.php
+//appear next to the pic when mouse if hover it.
+function makeChooseProfileBtnAppear(){
+    $('.user-each-pic-name').mouseenter(function() {
+      var picid = this.id;
+      $('#pro-img-'+picid).before($("<input type=\"submit\" name=\"profile-pic-form\" value=\"choose\" class=\"signup-button pro-btn\" />"));
+    });
+
+    $('.user-each-pic-name, user-img').mouseleave(function() {
+      $('input[name="profile-pic-form"]').remove();
+    });
+}
 
 
 //this function show the 'change profile picture' button
@@ -102,6 +120,9 @@ function showProfileChangePicBtn(){
       $('input[value="change profile picture"]').hide();
     });
 }
+
+
+
 
 
 //sent a request for partnership in an ajax way.
@@ -149,7 +170,6 @@ function doAjaxPartnershipRequest(){
 
 //sent a request for tutorial help in an ajax way.
 function doAjaxTutorialRequest(){ 
-  alert("level 1");
  $("input[name='tuto-request-form']").click(function(){ 
    if (($("p#fname")===undefined)&& ($("p#fname")==='')){
      $("input[name='tuto-request-form']").addClass("btn");
@@ -159,13 +179,11 @@ function doAjaxTutorialRequest(){
     };  
    //where your post form be sent
    var action_link = $('#tutorial-help').attr('action');
-alert("level 2");
    var tuto_request_content ={ //content of the partnership request form
      tuto_request_title: $("input[id='tuto-request-title']").val(), 
      tuto_request_for : $("input[id='tuto-request-for']").val(), 
      tuto_request_status : "0"
     };
-    alert($("input[id='tuto-request-title']").val());
     //start the ajax
     $.ajax({
       url: action_link , //this is the php file that processes the data and send mail
@@ -173,7 +191,6 @@ alert("level 2");
      data:  {tuto_request_data:tuto_request_content} , //data for server
      cache: false,//Do not cache the page
      success: function (datass, textStatus, jqXHR) {
-      alert(datass);
        //we want the succes text to show after the ajax call is successful
        $("p.tuto-request-sent-succes").show();
        //we want the succes text to show after the ajax call is successful
@@ -399,7 +416,7 @@ function showProfieleProject(){
 }
 
  //show the list of partner on user        
-function showProfielePartner(){
+function showProfileHW(){
   $("#partner-header").click(function(){
         $("#profile_summary_content").hide();
         $("#profile_project_content").hide();
@@ -563,7 +580,6 @@ function displayPostPics(pic_array, numb_pic){
       pic_format ="<section class=\"row main-post-img no-padbding no-manrgin \">";
     }
     for (var key in pic_array) {
-      alert(pic_array[key]);
       pic_format  = pic_format.concat("<div class =\"col-xs-4 \" ><img class = \"img-responsive user-imfg\"   src=\""+ pic_array[key]+"\" alt=\""+key+"\" ></div>");
     };
     pic_format  = pic_format.concat("</section>");
@@ -619,7 +635,6 @@ function createAjaxPost(postContent ,title,commentid,pic_array, numb_pic , not_c
  wholePost += "<section class=\"col-xs-12  no-margin no-padding \">"+
               "<div class=\"row no-margin no-padding \">"+
                "<section class=\"col-xs-4  no-margin \" >";
-               alert(comment_style);
  if ((comment_style !==false)&&(comment_style !==undefined)&&(comment_style !== '') ){
    wholePost += "<form  action=\"++/controller/request+php?"+'userid='+
                      userid +"\" method=\"post\" name=\"request-form\">";
@@ -764,7 +779,6 @@ function createAjaxPost(postContent ,title,commentid,pic_array, numb_pic , not_c
           }
         };
 
-
         //uniq id for each comment
         //var commentid = $( "ul#posts :first-child" ).attr('id') ;
       /* if($( "ul#posts :first-child" ).attr('id') === "lastlistid"){
@@ -777,7 +791,6 @@ function createAjaxPost(postContent ,title,commentid,pic_array, numb_pic , not_c
          var lastlistid = document.getElementById("lastlistid");
          var lastlistid =parseInt(lastlistid.innerHTML, 10);
          commentid =lastlistid+1;
-
        // var lastlistid = document.getElementById("lastlistid");
        // var commentid = parseInt(lastlistid.innerHTML, 10);
     
@@ -790,7 +803,6 @@ function createAjaxPost(postContent ,title,commentid,pic_array, numb_pic , not_c
         var post_title4= "";//for photo title
         var v1, v2, v3, v4, v5 = false;
         var k=0;
-
         if((content['isbn']!=='')){post_title1 = "book's isbn "+content['isbn'] +" "; v1=true; k++;}
         else if((content['booktitle']!=='')){post_title1 = "book's title "+content['booktitle']+"";v1=true;k++;}
         else if((content['authorName']!=='')){post_title1 = "book's author "+content['authorName']+"";v1=true;k++;}
@@ -804,7 +816,6 @@ function createAjaxPost(postContent ,title,commentid,pic_array, numb_pic , not_c
           v2=true; 
           k++;
         }
-
         if((content['furniKind']!=='')){post_title3= content['furniKind']; v3=true; k++;}
         else if((content['furniName']!=='')){post_title3=content['furniName']; v3=true; k++;}
         else if((content['furniBrand']!=='')){post_title3=content['furniBrand']; v3=true; k++;}
@@ -846,7 +857,6 @@ function createAjaxPost(postContent ,title,commentid,pic_array, numb_pic , not_c
         for (var key in content) {
          if((content[key] === '')&&(key !== 'picture')){ i++;}
         }
-
 
 
         if ((i ===24)&&(pic_count ===0) ){ //if i=lenght of content, nothing has been put in to the post
@@ -953,6 +963,9 @@ function for_comment(elementID){
       if ($('.wrapper-cmt').length>0) {
       $('.wrapper-cmt').remove();
       };
+
+     // alert(postid);
+      //alert(checkLastPostId()+2);
       var p = $('li[id='+postid+']');
       if (parseInt(postid , 10) <checkLastPostId()+2) {
         $('#post-'+postid).append(for_comment(postid));
@@ -969,6 +982,7 @@ function for_comment(elementID){
            picCheckboxValues[pic_count]= this.value;
            pic_count++;
           });
+
          //uniq id for each comment 
          var commentid ;
         /* if($( "ul#posts :first-child" ).attr('id') === "lastlistid"){commentid = 1;}
@@ -1023,7 +1037,7 @@ function for_comment(elementID){
     //if commentis clicked
     $('.post-comment').click(function(){ 
       var postid = this.id;
-     // $('.wrapper-cmt').remove();
+       $('.wrapper-cmt').remove();
       var p = $('li[id='+postid+']');
       if (parseInt(postid , 10) >= checkLastPostId()) {
         $('#post-'+postid).append(for_comment(postid));

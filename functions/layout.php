@@ -20,8 +20,7 @@
 
       <!-- ____________________________own created javascript _______________________________ -->
      <script src="../assets/javascript/jquery.js"></script>
-     <script src="../assets/javascript/select.js"></script>
-     <script src="../assets/javascript/menu.js"></script>
+     
      <!-- _______________own created javascript  content="width=device-width, initial-scale=1_____________ -->
 
       
@@ -60,7 +59,8 @@
       <!-- ____________________________slick_______________________________ -->
   
 
-       
+       <script src="../assets/javascript/select.js"></script>
+     <script src="../assets/javascript/menu.js"></script>
       
       <!-- ____________________________form library _______________________________ -->
     <!--  <script src="http://malsup.github.com/jquery.form.js"></script> -->
@@ -101,9 +101,9 @@
 </nav>-->
 
  
- <nav class="navbar navbar-inverse ">
-   <header class="container-fluid hdr   ">
-     <div class="navbar-header hdrlogo ">
+ <nav class="navbar navbar-inverse">
+   <header class="container-fluid hdr ">
+     <div class="navbar-header hdrlogo">
        <?php
          //checking if we are on the sign up page or log in page in order to navigation
          if ((strpos($_SERVER['PHP_SELF'], "index.php") !==false)|| 
@@ -123,19 +123,19 @@
        <?php
          //checking if we are on the sign up page or log in page in order to display the right text with icon
          if ((strpos($_SERVER['PHP_SELF'], "index.php")!==false)) { //we are on the index page
-           echo "<a class=\"navbar-brand  \" href=\"index.php\" id=\"logo\">MySchool</a>".
+           echo "<a class=\"navbar-brand  \" href=\"index.php\" id=\"logo\"></a>".
              "<ul class=\"nav navbar-nav navbar-right visible-xs-inline-block\">".
                "<li><a href=\"views/login.php\">".
                  "<span class=\"glyphicon glyphicon-log-in\"></span> Login</a>".
                "</li>"; //showing the login icon
           }elseif ((strpos($_SERVER['PHP_SELF'], "login.php") !==false)) {//we are on the login page
-           echo "<a class=\"navbar-brand  \" href=\"../index.php\" id=\"logo\">MySchool</a>".
+           echo "<a class=\"navbar-brand  \" href=\"../index.php\" id=\"logo\"></a>".
               "<ul class=\"nav navbar-nav navbar-right visible-xs-inline-block\">".
                "<li><a href=\"../index.php\">".
                  "<span class=\"glyphicon glyphicon-user\"></span> Sign Up</a>".
               "</li>"; //showing the sign up icon
             }else{ //show nothing
-             echo "<a class=\"navbar-brand  \" href=\"../index.php\" id=\"logo\">MySchool</a>".
+             echo "<a class=\"navbar-brand\" href=\"../index.php\" id=\"logo\"></a>".
               "<ul class=\"nav navbar-nav navbar-right visible-xs-inline-block\"> "; 
             }
           ?>
@@ -216,9 +216,9 @@
                    "<div class=\"row\">".
                      "<a href=\"home.php?".'userid='.$_SESSION['userid']."\"".
                        "class=\"active col-xs-5 \"><span class=\"glyphicon glyphicon-home\"> home</a>".
-                     "<span class=\"glyphicon glyphicon-th col-xs-1 visbible-xs-inline \" id=\"menu-home\"></span>
-                   </div>".
-                   "<div class=\"row top-sub-menu visible-xs-inlbine\" id=\"all-home-menu\">".
+                     "<span class=\"glyphicon glyphicon-th col-xs-1 visible-xs-inline \" id=\"menu-home\"></span>".
+                   "</div>".
+                   "<div class=\"row top-sub-menu hidden-sm hidden-md hidden-lg\" id=\"all-home-menu\">".
                      "<div class=\"col-xs-4 \">".
                        "<a href=\"home.php?".'userid='.$_SESSION['userid'].'&action=sale'."\" class=\"glyphicon\">".
                         "<span class=\"glyphicon glyphicon-eye-open \"></span>".
@@ -243,11 +243,11 @@
                    "<div class=\"row\">".
                      "<a href=\"profile.php?".'userid='.$_SESSION['userid']."\"".
                        "class=\"active col-xs-5 \"><span class=\"glyphicon glyphicon-user\"> Profile</a>".
-                     "<span class=\"glyphicon glyphicon-th col-xs-1 visible-xs-inline \" id=\"menu-profile\"></span>
-                   </div>".
-                   "<div class=\"row top-sub-menu visible-xs-inline\" id=\"all-profile-menu\">".
+                     "<span class=\"glyphicon glyphicon-th col-xs-1 visible-xs-inline \" id=\"menu-profile\"></span>".
+                   "</div>".
+                   "<div class=\"row top-sub-menu hidden-sm hidden-md hidden-lg\" id=\"all-profile-menu\">".
                      "<div class=\"col-xs-4\">".
-                       "<a href=\"home.php?".'userid='.$_SESSION['userid']."\" class=\"glyphicon\">".
+                       "<a href=\"userfiles.php?userid=".$_GET['userid']."&photo=true\" class=\"glyphicon\">".
                         "<span class=\"glyphicon glyphicon-picture\"></span>".
                         "<p class=\"text-muted\">Photos</p>".
                        "</a>".
@@ -2736,7 +2736,7 @@
            <a href="../index.php">Don't have an account?</a>
          </p>
        </div>
-     </div>
+     </div> 
    </div>
    
   <?php

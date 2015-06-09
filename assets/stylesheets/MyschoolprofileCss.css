@@ -16,16 +16,34 @@ header aside div h3{background-color:#B0DBA9;}
 
 /*********************************user profile  details************************************/
 
-.profileintro{  border: 1px solid green;  margin: 0%; padding: 0%;}
-.profiledetails{ border: 1px solid blue;}
-.user-name-and-status{position: relative; border: 1px solid yellow; background-color: pink;}
+.profileintro{margin: 0%; padding: 0%;  
+}
+.profiledetails{ 
+ background-image: url('../../images/seamless_paper_texture.png');
+ 
+}
+
+@media only screen and (min-width: 768px){
+  .profiledetails{height: 458px !important; width:79%;
+}
+}
+
+@media only screen and (min-width: 768px){
+  .profiledetails{margin-left: 5px !important;}
+}
+
+.user-name-and-status{position: relative;}
 .college-header{position: relative;  margin-top: -1%;}
 .online_Status{margin-top: 0%;border-radius: 30%; border:5px outset green; background-color: orange;}
 .online_Status h1{ margin: auto; padding: 0%; font-size: 1em; text-align: center;}
 /*user name*/
 .profiledetails #user_name{margin-top: 0%;}
-.pro-overview{background-color: pink;}
- .aaa{background-color: blue;}
+
+@media only screen and (max-width: 768px){
+  .user-name-and-status{position: relative;}
+ .online_Status{border-radius: 30%; border:5px outset green; background-color: orange; right:30px !important;}
+}
+.pro-overview{}
 
 
  /*user profile navigation bar: i.e sumamary, project, partner...*/
@@ -46,11 +64,20 @@ cursor: pointer; cursor: hand;
 
 
 /*bar below profile nav bar*/
-.profiledetails #line-below-nav-header{margin-top: 19px; margin-right:0px;}
+.profiledetails #line-below-nav-header{
+  margin-top: 19px; margin-right:0px;  
+  border: 1px solid #B6B7B6;
+}
 
+/*small bar below profile nav bar*/
+@media only screen and (max-width: 768px){
+.profiledetails #line-below-nav-header{
+  width:5%;
+ }
+}
 /*use for jquery*/
 .user-info-header-style{
-  border:1px solid black; border-bottom:none;
+  border: 1px solid #B6B7B6;border-bottom:none;
   border-top-left-radius:10px; border-top-right-radius:10px;
 }
 
@@ -59,6 +86,8 @@ nav hr{
   position: relative;
  width: 110%;
  margin-top: 0%;
+   border: 1px solid #B6B7B6;
+
 }
   
   /*bar bellow project and partner nav tag*/
@@ -83,12 +112,35 @@ nav  hr#line-below-abt-header{
 }
 
 /* edit button */
-#edit-header{margin-top: -10px;}
+#edit-header{
+ font-weight: bold;
+font-size: 1em;
+font-style: normal;
+text-transform: uppercase;
+margin-left: 0;
+margin-right: 0;
+padding-top: 0;
+padding-bottom: 0;
+padding-right: 0;
+padding-left: 0;
 
+}
+
+#eddit-header span.glyphicon-edit{
+font-weight: bold;
+padding-top: 0;
+padding-left: 0;
+padding-bottom: -10px !important;
+padding-right: 0;
+margin-left: 0;
+margin-right: -20px !important;
+margin-bottom: -10px !important;
+margin-top: 0;
+}
     
 /*div below the profile navigation bar, this content  will dynamically change based on tag selected*/
  .profiledetails #all-about-user{
-  border: 1px solid black;
+  border: 1px solid #B6B7B6;
   border-radius: 10px;
   
   margin-top: -26px;
@@ -98,6 +150,9 @@ nav  hr#line-below-abt-header{
   border-top: none;
  }
 
+@media only screen and (min-width: 768px){
+  #all-about-user{height: 350px !important;}
+}
  
  /***scrolling div*/
  .profiledetails #all-about-user #inner-for-scroll{
@@ -131,7 +186,7 @@ nav  hr#line-below-abt-header{
 
 #profile_summary_content{padding: 0px; margin: 0px;  }
 
-#profile_summary_content .row {width: 100%; border: 1px solid red; }
+#profile_summary_content .row {width: 100%;}
 /*right element of the table*/
 .profiledetails #all-about-user .table .td-rigfht{
   padding-left: 50px;
@@ -141,11 +196,10 @@ nav  hr#line-below-abt-header{
 /**user detail summary*/
 #profile_summary_content h4{color: #575257;margin-top:7px; margin-bottom: -15px;}
 #profile_summary_content hr{position: relative; margin-bottom: 5px; }
-#profile_summary_content p{text-align: left; margin: 0px; padding: 0px; margin-top: -3px; margin-left: 5px;}
+#profile_summary_content p{text-align: left; margin: 0px; padding: 0px; margin-top: -3px; margin-left: 5px; margin-bottom: 10px !important;}
 #profile_summary_content h5{ text-align: right; margin: 0px;  padding: 0px;
                                     margin-left: 0px; margin-right: 0px;  }
-  .fu{border: 1px solid red; margin: 0px;  padding: 0px; }
-  .fa{border: 1px solid yellow; margin: 0px;  padding: 0px; }
+  
   .re{border: 1px solid black; }
  
 /**about user nav*/
@@ -176,7 +230,8 @@ nav  hr#line-below-abt-header{
   }
 
 /***************************profile pic and other buttons ******************************/
-.profilepic-and-other{ border: 1px solid blue;
+.profilepic-and-other{ background-image: url('../../images/seamless_paper_texture.png');
+ 
   /**general browser*/
  /*border-top-left-radius: 2em 2em; border-top-right-radius: 5em 15em;
  border-bottom-right-radius: 5em 15em;border-bottom-left-radius: 2em 2em;*/
@@ -188,45 +243,57 @@ nav  hr#line-below-abt-header{
 -webkit-border-bottom-left-radius:2em 2em;-webkit-border-bottom-right-radius:5em 15em;*/
  } 
 
-/*the 4 buttons bellow the the profile pics */
-.pro-pic-bottom-details section{
-  text-align: left; margin: 0px; padding: 0px; padding-bottom: 5px; 
+@media only screen and (min-width: 768px){
+  .profilepic-and-other{ width: 20%;height: 458px !important;}
 }
 
-.pro-pic-bottom-details section input{
+/*the 4 buttons bellow the the profile pics */
+.pro-pic-bottom-details section{
+  text-align: center ; margin: 0px; padding: 0px; padding-bottom: 5px; 
+}
+
+.pro-pic-bottom-details section input, 
+ .pro-pic-bottom-details section a.btn-default, .upload-new-resume-btn{
   border:2px; border-radius: 25px; color: white; padding: 5px;  
 }
 
 /*the first 3 buttons bellow the the profile pics */
-.pro-pic-bottom-details section:nth-last-child(4) input,
- .pro-pic-bottom-details section:nth-last-child(3) input,
- .pro-pic-bottom-details section:nth-last-child(2) input{
-   padding-left: 30px;  width: 63%; text-align: center;
+.pro-pic-bottom-details section:nth-last-child(4) form#become-part  input,
+ .pro-pic-bottom-details section a.btn-default,.upload-new-resume-btn
+ {
+   width: 90%; text-align: center; 
+}
+
+/*the first 3 buttons bellow the the profile pics */
+.pro-pic-bottom-details section:nth-last-child(4) form#become-part  input
+ {
+    margin-left: -20px;
 }
 
 /*the glyphicon icons to the left of the first 3 button bellow the the profile pics */
-.pro-pic-bottom-details .glyphicon-user, .pro-pic-bottom-details .glyphicon-file,
- .pro-pic-bottom-details .glyphicon-envelope{
-  top: -1px !important; left: 23px; color: white; position: relative;
+.pro-pic-bottom-details .glyphicon-user{
+ position: relative; top: -1px !important; left: 24px; color: white; 
 }
 
 /*the plus(+) glyphicon icon to the right of the user glyphicon icon bellow the the profile pics */
-.pro-pic-bottom-details section:nth-last-child(4) .glyphicon-plus{ 
+.pro-pic-bottom-details section:nth-last-child(4) form#become-part .glyphicon-plus{ 
   position: absolute; margin-left:  -6px; top: 5px;
 }
 
+/*upload new resume button that will appear in place of become partner place*/
+.upload-new-resume-btn{ border-color: #60371D; background-color: #60371D;}
+
 /*the first button bellow the the profile pics */
-.pro-pic-bottom-details section:nth-last-child(4) input{background-color: #751919; border:2px outset #751919;}
+.pro-pic-bottom-details section:nth-last-child(4) form#become-part  input{background-color: #751919; border:2px outset #751919;}
 
 /*the second button bellow the the profile pics */
-.pro-pic-bottom-details section:nth-last-child(3) input{background-color: #CF1565;border:2px outset #CF1565;}
-
 /*the third button bellow the the profile pics */
-.pro-pic-bottom-details section:nth-last-child(2) input{background-color: #CF1565;border:2px outset #CF1565;}
+.pro-pic-bottom-details section a.btn-default{background-color: #CF1565;border:2px outset #CF1565;}
+
 
 /*the fourth button bellow the the profile pics */
 .pro-pic-bottom-details section:nth-last-child(1) input{
-  margin-left: 12%; background-color:green; border:2px outset green; width: 63%;
+ background-color:green; border:2px outset green; width: 90%;
 }
 
 /*for small screen*/
@@ -238,16 +305,12 @@ nav  hr#line-below-abt-header{
    text-align: center; padding-bottom: 7px;
  }
 
- .pro-pic-bottom-details .glyphicon-user, .pro-pic-bottom-details .glyphicon-file,
-  .pro-pic-bottom-details .glyphicon-envelope{
-   left: 30%;
+ .pro-pic-bottom-details .glyphicon-user {
+   left: 23%;
   }
 
- /*the fourth button bellow the the profile pics */
- .pro-pic-bottom-details section:nth-last-child(4) input,
-   .pro-pic-bottom-details section:nth-last-child(3) input,
-   .pro-pic-bottom-details section:nth-last-child(2) input,
-   .pro-pic-bottom-details section:nth-last-child(1) input,
+ /*the first and fourth button bellow the the profile pics */
+ .pro-pic-bottom-details section:nth-last-child(4) form#become-part  input,
    .pro-pic-bottom-details section:nth-last-child(1) input{
    width: 90%;
   }
@@ -269,12 +332,32 @@ nav  hr#line-below-abt-header{
  
 } */
 .profilepic{height:200px; overflow: hidden;  position: relative; margin: 0px;padding:0px;}
-.profilepic .col-xs-12 { height:200px; position: relative; background-color : white ;}
-.profilepic .col-xs-12 img{position: absolute; display: table-cell; top: 0px; bottom: 0px; left: 0px; right: 0px;}
+.profilepic .col-xs-12 { height:200px; position: relative; background-color : white ; text-align: center;}
+.profilepic .col-xs-12 img{position: absolute; display: table-cell; top: 0px; bottom: 0px; left: 0px; right: 0px; text-align: center;}
 
+/*use in jquery*/
 .profilepic-img{margin: auto; }
+/*END use in jquery*/
 
-#upload-pic{ position: absolute;bottom: 0%; text-align: center;}
+#upload-pic{
+  text-align: center;
+}
+#upload-pic .upload-btn{
+ color: white;
+ border-color: #60371D;
+ background-color: #60371D;
+ width: 10em;
+ font-size: 1.6em;
+text-align: center;
+}  
+
+
+
+#upload-pic #file_upload{
+ padding-bottom: 10px;
+ color: red;
+} 
+
 #change-pro-pic{position: absolute;bottom: 0%; right: 20%;}
 input[value="change profile picture"] {display: none;}
 
@@ -288,7 +371,8 @@ input[value="change profile picture"] {display: none;}
 /*********************************main page ************************************/ 
 /* row that wraps the bottom section bellow profileintro that contains the <main> and photos*/
 .main{
-/* background-color: orange;*/
+ background-color: #Fh5F7F5;
+
 
 }
 
@@ -409,7 +493,8 @@ input#service-input-left{position: relative; width:100%; padding-right: 60px;}
 
 
 /*********************************extra section section in post************************************/
-.extra-stuff{background-color: orange; border-radius: 25px; border:2px outset #F5F7F5;}
+.extra-stuff{ background-image: url('../../images/seamless_paper_texture.png');
+ border-radius: 25px; border:2px outset #F5F7F5;}
 .new-post fieldset {   border-radius: 18px;  
  -moz-border-radius: 18px;-webkit-border-radius: 18px;-o-border-radius: 18px;}
 

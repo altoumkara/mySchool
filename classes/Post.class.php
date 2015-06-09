@@ -500,7 +500,7 @@
              echo "<section class=\"row main-post-img\" style=\"text-align:center; \">".
               "<div class =\"col-xs-4 \" ></div>";
             }else{
-             echo "<section class=\"row main-post-img no-pafdding nov-margin re\">";
+             echo "<section class=\"row main-post-img no-pafdding nov-margin\">";
             }
           }
 
@@ -625,7 +625,7 @@
     //@return a list of items
    //if $itnumb !==true, that means we want to view items individually with next, prev
    //if $expand !==false, we want to expand everything.
-   function show_each_item($db, $postcontent,$array_items, $college,$pic_array){
+   function show_each_item($db, $postcontent,$array_items, $college,$pic_array, $college=''){
         $ctn ='';
        
         //category
@@ -640,15 +640,14 @@
                    "<div class=\"col-xs-12 no-padding no-margin\"><p>".$postcontent."</p></div>";
 
            $ctn .="<div class=\"col-xs-12 no-padding no-margin table-responsive\">".
-                    "<table class=\"table table-striped\"><tr>";
+                    "<table class=\"table table-striped\">";
 
           if ($pic_format !=='') {//checking if there exist a picture with the book
-            $ctn .= "<td rowspan=\"7\" class=\"top-tr \">".$pic_format."</td><td>";
+            $ctn .= "<tr><td rowspan=\"7\" class=\"top-tr \">".$pic_format."</td><td></td></tr>";
           } else {
-             $ctn .= "<td class=\"td-static text-muted\"><td>";
+         //    $ctn .= "<td class=\"td-static text-muted\"><td>";
           }
-           $ctn .=   "</td></tr>".
-                     "<tr ><td class=\"td-static text-muted\"><small>Kind: </small></td>".
+           $ctn .=   "<tr ><td class=\"td-static text-muted\"><small>Kind: </small></td>".
                      "<td >".$array_items['itname']."</td></tr>".
                      "<tr><td class=\"td-static text-muted\"><small>Brand: </small></td>".
                      "<td >".$array_items['itBrand']."</td></tr>";
@@ -667,6 +666,7 @@
                        "<small class=\"text-info text-lowercase\">Cat: ".$array_category[0][0]."</small>".
                       "</li>".
                       "<li><small class=\"text-info\">  Type: ".$array_items['itKind']."</small></li>".
+                      "<li><small class=\"text-info\">  College: ".$college."</small></li>".
                      "</ul>".
                      "</secton>";
         
@@ -677,11 +677,10 @@
     //@return a list of items
    //if $itnumb !==true, that means we want to view items individually with next, prev
    //if $expand !==false, we want to expand everything.
-   function show_each_service($db, $postcontent,$array_items, $college,$pic_array){
-        $ctn ='';
+   function show_each_service($db, $postcontent,$array_items, $college,$pic_array,$college=''){
+       $ctn ='';
        
-        //category
-         $array_category =  $db->select("categories",'where catid ='.$array_items["catid"], "catname");
+       $array_category =  $db->select("categories",'where catid ='.$array_items["catid"], "catname");
 
          $pic_format ='';
          if (isset($pic_array)&& !empty($pic_array)){//we have pic in the post
@@ -692,44 +691,46 @@
                    "<div class=\"col-xs-12 no-padding no-margin\"><p>".$postcontent."</p></div>";
 
            $ctn .="<div class=\"col-xs-12 no-padding no-margin table-responsive\">".
-                    "<table class=\"table table-striped\"><tr>";
+                    "<table class=\"table table-striped\">";
 
           if ($pic_format !=='') {//checking if there exist a picture with the book
-            $ctn .= "<td rowspan=\"7\" class=\"top-tr \">".$pic_format."</td><td>";
+            $ctn .= "<tr><td rowspan=\"7\" class=\"top-tr \">".$pic_format."</td><td><t/d></tr>";
           } else {
-             $ctn .= "<td class=\"td-static text-muted\"><td>";
+         //    $ctn .= "<td class=\"td-static text-muted\"><td>";
           }
-           $ctn .=   "</td></tr>".
-                     "<tr ><td class=\"td-static text-muted\"><small>Kind: </small></td>".
+           $ctn .=    "<tr ><td class=\"td-static text-muted\"><small>Kind: </small></td>".
                      "<td >".$array_items['itname']."</td></tr>".
-                     "<tr><td class=\"td-static text-muted\"><small>Brand: </small></td>".
-                     "<td >".$array_items['itBrand']."</td></tr>";
-          
-         $ctn .= "<tr ><td class=\"td-static text-muted\"><small>Quality: </small></td>".
-                     "<td class=\"\">".$array_items["itquality"]."</td></tr>".
-                     "<tr ><td class=\"td-static text-muted\"><small>Quantity: </small></td>".
-                     "<td class=\"\">".$array_items["itquantity"]."</td></tr>".
-                     "<tr><td class=\"td-static text-muted\"><small>Color: </small></td>".
-                     "<td class=\"\">".$array_items["itColor"]."</td></tr>".
-                     "<tr ><td class=\"td-static text-muted\"><small>Price: </small></td>".
+                     "<tr ><td class=\"td-static text-muted\"><small>Compensation: </small></td>".
                      "<td class=\"\">$".$array_items["itprice"]."</td></tr>".
                      "</table></div>".
                      "<ul class=\"col-xs-12 no-padding no-margin list-inline\">".
                       "<li>".
-                       "<small class=\"text-info text-lowercase\">Cat: ".$array_category[0][0]."</small>".
+                       "<small class=\"text-info text-lowercase\">Cat: Service</small>".
                       "</li>".
                       "<li><small class=\"text-info\">  Type: ".$array_items['itKind']."</small></li>".
+                      "<li><small class=\"text-info\">  College: ".$college."</small></li>".
                      "</ul>".
                      "</secton>";
         
         return $ctn;
     }
     
+   /* "<a name=\"".$array_items[$i]["itKind"]."\">".$array_items[$i]["itKind"]."</a>","<table class=\"internship-items\">".
+                 "<td class=\"\"><h4>Service #: </h4></td>".
+                 "<td class=\"\">".$array_items[$i]["itnumb"]."</td></tr>".
+                 "<td class=\"\"><h4>Service type: </h4></td>".
+                 "<td class=\"\">".$array_items[$i]["itname"]."</td></tr>".
+                 "<td class=\"\"><h4>Compensation: </h4></td>".
+                 "<td class=\"\">$".$array_items[$i]["itprice"]."</td></tr>".
+                 "<td class=\"\"><h4>location: </h4></td>".
+                 "<td class=\"\">".$user[0][3]."</td></tr>".
+                 "</table></br></br>",$array_items[$i]["itnumb"],$user[0][0],"can help?",false, false, "</article>"*/
+                
 
     //@return a list of items
    //if $itnumb !==true, that means we want to view items individually with next, prev
    //if $expand !==false, we want to expand everything.
-   function show_each_book($db, $postcontent,$array_book, $college,$pic_array){
+   function show_each_book($db, $postcontent,$array_book, $college,$pic_array, $college=''){
       $ctn ='';
      
       //category
@@ -777,6 +778,7 @@
                        "<small class=\"text-info text-lowercase\">Cat: Book</small>".
                       "</li>".
                       "<li><small class=\"text-info\">  Type: ".$array_book[0]["booktitle"]."</small></li>".
+                      "<li><small class=\"text-info\">  College: ".$college."</small></li>".
                    "</ul>".
                  "</secton>";
 
@@ -786,6 +788,69 @@
       
       return $ctn;
     }
+
+
+
+
+   //@return a list of items
+   //if $itnumb !==true, that means we want to view items individually with next, prev
+   //if $expand !==false, we want to expand everything.
+   function show_each_Internship($db, $postcontent,$array_items, $college,$pic_array){
+        $ctn ='';
+       
+        //category
+         //$array_category =  $db->select("categories",'where catid ='.$array_items["catid"], "catname");
+
+         $pic_format ='';
+         if (isset($pic_array)&& !empty($pic_array)){//we have pic in the post
+           $pic_format  .= "<img class=\"item-img img-responsive\" src=\"".$pic_array[0][0]."\" alt=\"item pic\" >";
+          }
+
+          $ctn .= "<section class=\"row no-padding no-margin \">".
+                   "<div class=\"col-xs-12 no-padding no-margin\"><p>".$postcontent."</p></div>";
+
+           $ctn .="<div class=\"col-xs-12 no-padding no-margin table-responsive\">".
+                    "<table class=\"table table-striped\"><tr>";
+
+          if ($pic_format !=='') {//checking if there exist a picture with the book
+            $ctn .= "<td rowspan=\"7\" class=\"top-tr \">".$pic_format."</td><td>";
+          } else {
+             $ctn .= "<td class=\"td-static text-muted\"><td>";
+          }
+           $ctn .=   "</td></tr>".
+                     "<tr ><td class=\"td-static text-muted\"><small>Company: </small></td>".
+                     "<td >".$array_items["intcompanyname"]."</td></tr>".
+                     "<tr><td class=\"td-static text-muted\"><small>Address: </small></td>".
+                     "<td >".$array_items["intstate"]."</td></tr>";
+          
+         $ctn .= "<tr ><td class=\"td-static text-muted\"><small>Number of position: </small></td>".
+                     "<td class=\"\">".$array_items["intnumbposition"]."</td></tr>".
+                     "<tr ><td class=\"td-static text-muted\"><small>Compensation: </small></td>".
+                     "<td class=\"\">".$array_items["intcompensation"]."</td></tr>".
+                     "<tr><td class=\"td-static text-muted\"><small>Duration: </small></td>".
+                     "<td class=\"\">".$array_items["intstartdate"].' to '.$array_items["intenddate"]."</td></tr>";
+
+        if (isset($array_items["intfilepath"])&&($array_items["intfilepath"]!=='')&&
+           ($array_items["intfilepath"]!=='null')&&($array_items["intfilepath"]!=='NULL')) {
+          $ctn .="<td class=\"td-static text-muted\">additional details: </small</td>".
+              "<td class=\"\">".$array_items[$i]["intfilepath"]."</td></tr>";
+         }
+           
+              $ctn .= "<tr ><td class=\"td-static text-muted\"><small>aApply before: </small></td>".
+                     "<td class=\"\">$".$array_items["intapplydeadline"]."</td></tr>".
+                     "</table></div>".
+                     "<ul class=\"col-xs-12 no-padding no-margin list-inline\">".
+                      "<li>".
+                       "<small class=\"text-info text-lowercase\">Cat: Internship </small>".
+                      "</li>".
+                      "<li><small class=\"text-info\">  Type: ".$array_items["inttile"]."</small></li>".
+                     "</ul>".
+                     "</secton>";
+        
+        return $ctn;
+    }
+
+
 
 
 
@@ -875,7 +940,7 @@
     //it is used to display the post that a person requested.
     //it is used mainly in the notification section in services.php
     //this is the function to display  posts
-   function display_PostRequested($db, $userid, $fname, $lname, $college,$items_array=false, $book_array=false){
+   function display_PostRequested($db, $userid, $fname, $lname, $college,$items_array=false, $book_array=false, $interenship_array=false){
      //base case
      //if($array_post=== false){ return false;}
     //for ($i=count($array_post)-1; $i >= 0; $i--) {
@@ -915,6 +980,7 @@
       $pic_array=array(); 
       //getting the original post that included the item
       $array_post =false;//
+     //if (($items_array !== false)||($book_array !== false)) { //is there either a book or other item included in the post
       if (($items_array["postid"] !== '')&&($items_array["postid"] !== 'null')&&($items_array["postid"] !== NULL)) {
        $array_post = $db->select_2dArray("post",  'where postid ='.$items_array["postid"]);
        //select phpath from photo where postid =1;
@@ -923,8 +989,9 @@
        
        //if getting the original does not return false, we get the original title of the post
       if ($array_post !== false) {
-        $posttitle =$array_post[0]['posttitle'];
+        $posttitle = $array_post[0]['posttitle'];
       }
+   // }
        
      //creating the html post
      $item_format ='';
@@ -932,16 +999,16 @@
      if (($items_array !== false)||($book_array !== false)) { //is there either a book or other item included in the post
        if (($items_array !== false)&&($array_post !== false)) {//there was items inlcuded in the post, and it was posted
          //for ($j=0; $j < count($items_array) ; $j++) { 
-         if ($items_array['catid'] === '4') {//category is service
-           $service_format .= $this->show_each_item($db,$array_post[0]['postcontent'],$items_array,$college,$pic_array);
+         if ($items_array['catid'] === '4') {//category is service    
+           $service_format .= $this->show_each_service($db,$array_post[0]['postcontent'],$items_array,$college,$pic_array,$college);
           }else{//category is sales items
-           $item_format .= $this->show_each_item($db,$array_post[0]['postcontent'],$items_array,$college,$pic_array);
+           $item_format .= $this->show_each_item($db,$array_post[0]['postcontent'],$items_array,$college,$pic_array,$college);
           }
         }elseif(($items_array !== false)&&($array_post === false)) {//there was items inlcuded in the post, but was not posted
          if ($items_array['catid'] === '4') {//category is service
-           $service_format .= $this->show_each_item($db,'',$items_array,$college,$pic_array);
+           $service_format .= $this->show_each_service($db,'',$items_array,$college,$pic_array,$college);
           }else{//category is sales items
-            $item_format .= $this->show_each_item($db,'',$items_array,$college,$pic_array);
+            $item_format .= $this->show_each_item($db,'',$items_array,$college,$pic_array,$college);
           }
         }else{}//do nohing
 
@@ -949,20 +1016,32 @@
          //we change the default title to have book isbn + item name
          $posttitle = "book's isbn ".$book_array['isbn'].' and '.$array_items["itname"]." for sale!";
          //append this to the item format html
-         $item_format .= $this->show_each_book($db,$array_post[0]['postcontent'], $book_array,$college,$pic_array);
+         $item_format .= $this->show_each_book($db,$array_post[0]['postcontent'], $book_array,$college,$pic_array,$college);
         }elseif(($book_array !== false)&&($array_post === false)){//there was a book inlcuded in the post, but was not posted
-         $item_format .= $this->show_each_book($db,'', $book_array,$college,$pic_array);
+         $posttitle = "book's isbn ".$book_array['isbn']." for sale!";
+         $item_format .= $this->show_each_book($db,'', $book_array,$college,$pic_array,$college);
         }else{}//do nohing
 
         if ($service_format !=='') {//we want to put service in separate post
+         $posttitle = "<a name=\"".$items_array["itKind"]."\">".$items_array["itKind"]."</a>";
          $this->create_post($fname,$lname,$items_array["itcreatedate"],
          $posttitle,$service_format, $items_array['postid'],$userid,"can help?",$pic_array, count($pic_array),"</article>" ,false);
         }
         if ($item_format !=='') {//if there is items posted
          $this->create_post($fname,$lname,$items_array["itcreatedate"],$posttitle,$item_format,
            $items_array['postid'],$userid,'send buying request',$pic_array, count($pic_array),'', false);
-        }
-      }
+        }else{}
+
+      }elseif ($interenship_array !== false) { //it is an internship that  has been posted 
+        $posttitle = $interenship_array["inttile"];
+        $item_format .= $this->show_each_Internship($db,$interenship_array['intcontent'], $interenship_array ,$college,$pic_array);
+        $this->create_post($fname,$lname,$interenship_array["intstartdate"],
+         $posttitle,$item_format, $items_array['postid'],$userid,"Apply",$pic_array, count($pic_array),"</article>" ,false);
+        
+      }else{}
+
+
+      //show_each_Internship
   //    create_post($fname, $lname, $date, $title, $postContent ,$commentid,$userid=false,
    //           $other_comment_style= false,$array_pic = false, $numb_pic =false, /*$what_kind = false,*/ $closing="")
       
